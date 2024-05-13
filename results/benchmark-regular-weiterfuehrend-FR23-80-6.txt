@@ -1,0 +1,44 @@
+#graph, size, connectivity, algorithm, index, stretch, load, hops, success, routing computation time, pre-computation time in seconds
+#Mon Mar 20 15:19:17 2023
+regular, 80, 6, MultipleTrees FR23, 0, 18, 2, 23, 0.400000, 0.000640, 158.083030
+regular, 80, 6, OneTree Inverse Mod FR23, 0, 18, 2, 23, 0.200000, 0.000511, 14.941434
+regular, 80, 6, OneTree FR23, 0, inf, inf, inf, 0.000000, 0.000564, 13.462280
+regular, 80, 6, MultipleTrees Invers FR23, 0, 16, 2, 21, 0.600000, 0.000589, 166.297523
+regular, 80, 6, SquareOne FR23, 0, inf, inf, inf, 0.000000, 0.000908, 1.797638
+regular, 80, 6, MultipleTrees Parallel Invers FR23, 0, 6, 2, 11, 0.200000, 0.000590, 181.050188
+regular, 80, 6, MultipleTrees FR23, 1, 18, 2, 23, 0.400000, 0.000632, 160.000136
+regular, 80, 6, OneTree Inverse Mod FR23, 1, 0, 3, 3, 0.200000, 0.000512, 15.086793
+regular, 80, 6, OneTree FR23, 1, 0, 3, 3, 0.200000, 0.000493, 13.312015
+regular, 80, 6, MultipleTrees Invers FR23, 1, 0, 2, 3, 0.200000, 0.000630, 166.363270
+regular, 80, 6, SquareOne FR23, 1, 0, 60, 3, 0.200000, 0.000955, 1.819602
+regular, 80, 6, MultipleTrees Parallel Invers FR23, 1, 0, 3, 3, 0.200000, 0.000568, 181.973337
+regular, 80, 6, MultipleTrees FR23, 2, inf, inf, inf, 0.000000, 0.000617, 159.029969
+regular, 80, 6, OneTree Inverse Mod FR23, 2, inf, inf, inf, 0.000000, 0.000481, 15.027245
+regular, 80, 6, OneTree FR23, 2, inf, inf, inf, 0.000000, 0.000489, 13.244002
+regular, 80, 6, MultipleTrees Invers FR23, 2, inf, inf, inf, 0.000000, 0.000615, 166.267124
+regular, 80, 6, SquareOne FR23, 2, inf, inf, inf, 0.000000, 0.000927, 1.801562
+regular, 80, 6, MultipleTrees Parallel Invers FR23, 2, inf, inf, inf, 0.000000, 0.000564, 181.961945
+regular, 80, 6, MultipleTrees FR23, 3, 10, 2, 13, 0.400000, 0.000649, 159.817006
+regular, 80, 6, OneTree Inverse Mod FR23, 3, 0, 2, 3, 0.200000, 0.000490, 14.647497
+regular, 80, 6, OneTree FR23, 3, 0, 2, 3, 0.200000, 0.000495, 13.303594
+regular, 80, 6, MultipleTrees Invers FR23, 3, 0, 2, 3, 0.200000, 0.000564, 166.238336
+regular, 80, 6, SquareOne FR23, 3, 0, 74, 3, 0.200000, 0.001012, 1.804094
+regular, 80, 6, MultipleTrees Parallel Invers FR23, 3, 0, 2, 3, 0.200000, 0.000549, 181.723627
+regular, 80, 6, MultipleTrees FR23, 4, 14, 2, 16, 0.600000, 0.000616, 158.748158
+regular, 80, 6, OneTree Inverse Mod FR23, 4, 2, 1, 6, 0.600000, 0.000483, 15.252955
+regular, 80, 6, OneTree FR23, 4, 2, 1, 6, 0.600000, 0.000494, 13.306567
+regular, 80, 6, MultipleTrees Invers FR23, 4, 4, 1, 10, 0.800000, 0.000539, 166.121507
+regular, 80, 6, SquareOne FR23, 4, 0, 40, 4, 0.600000, 0.000784, 1.799078
+regular, 80, 6, MultipleTrees Parallel Invers FR23, 4, 0, 1, 4, 0.600000, 0.000532, 182.710520
+regular, 80, 6, MultipleTrees FR23, 5, 8, 2, 10, 0.400000, 0.000608, 159.124928
+regular, 80, 6, OneTree Inverse Mod FR23, 5, 1, 2, 4, 0.400000, 0.000482, 15.241511
+regular, 80, 6, OneTree FR23, 5, 1, 2, 4, 0.400000, 0.000484, 13.335233
+regular, 80, 6, MultipleTrees Invers FR23, 5, 0, 1, 3, 0.400000, 0.000585, 166.603469
+regular, 80, 6, SquareOne FR23, 5, 0, 79, 3, 0.400000, 0.000808, 1.785012
+regular, 80, 6, MultipleTrees Parallel Invers FR23, 5, 0, 1, 3, 0.400000, 0.000539, 181.405335
+regular, 80, 6, MultipleTrees FR23, 6, 2, 2, 7, 0.200000, 0.000628, 159.164156
+regular, 80, 6, OneTree Inverse Mod FR23, 6, inf, inf, inf, 0.000000, 0.000521, 15.190313
+regular, 80, 6, OneTree FR23, 6, inf, inf, inf, 0.000000, 0.000539, 13.258010
+regular, 80, 6, MultipleTrees Invers FR23, 6, 2, 1, 8, 0.200000, 0.000648, 166.046839
+regular, 80, 6, SquareOne FR23, 6, inf, inf, inf, 0.000000, 0.001015, 1.792907
+regular, 80, 6, MultipleTrees Parallel Invers FR23, 6, inf, inf, inf, 0.000000, 0.000573, 182.191538

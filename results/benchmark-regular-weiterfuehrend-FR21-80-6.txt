@@ -1,0 +1,44 @@
+#graph, size, connectivity, algorithm, index, stretch, load, hops, success, routing computation time, pre-computation time in seconds
+#Mon Mar 20 13:13:52 2023
+regular, 80, 6, MultipleTrees FR21, 0, 8, 2, 13, 0.400000, 0.000630, 158.898220
+regular, 80, 6, OneTree Inverse Mod FR21, 0, 18, 2, 23, 0.200000, 0.000516, 14.996765
+regular, 80, 6, OneTree FR21, 0, inf, inf, inf, 0.000000, 0.000587, 13.427177
+regular, 80, 6, MultipleTrees Invers FR21, 0, 16, 2, 21, 0.600000, 0.000599, 165.928693
+regular, 80, 6, SquareOne FR21, 0, inf, inf, inf, 0.000000, 0.000941, 1.811896
+regular, 80, 6, MultipleTrees Parallel Invers FR21, 0, 6, 2, 11, 0.200000, 0.000620, 181.302656
+regular, 80, 6, MultipleTrees FR21, 1, 18, 2, 23, 0.400000, 0.000643, 159.201742
+regular, 80, 6, OneTree Inverse Mod FR21, 1, 0, 3, 3, 0.200000, 0.000518, 15.021500
+regular, 80, 6, OneTree FR21, 1, 0, 3, 3, 0.200000, 0.000513, 13.278265
+regular, 80, 6, MultipleTrees Invers FR21, 1, 6, 2, 11, 0.400000, 0.000638, 165.892068
+regular, 80, 6, SquareOne FR21, 1, 0, 60, 3, 0.200000, 0.000914, 1.803234
+regular, 80, 6, MultipleTrees Parallel Invers FR21, 1, 0, 3, 3, 0.200000, 0.000557, 181.411168
+regular, 80, 6, MultipleTrees FR21, 2, inf, inf, inf, 0.000000, 0.000729, 159.318484
+regular, 80, 6, OneTree Inverse Mod FR21, 2, inf, inf, inf, 0.000000, 0.000493, 14.568321
+regular, 80, 6, OneTree FR21, 2, inf, inf, inf, 0.000000, 0.000544, 13.227879
+regular, 80, 6, MultipleTrees Invers FR21, 2, 26, 2, 32, 0.200000, 0.000677, 164.909220
+regular, 80, 6, SquareOne FR21, 2, inf, inf, inf, 0.000000, 0.000991, 1.799485
+regular, 80, 6, MultipleTrees Parallel Invers FR21, 2, inf, inf, inf, 0.000000, 0.000599, 181.660237
+regular, 80, 6, MultipleTrees FR21, 3, 10, 2, 13, 0.400000, 0.000638, 158.898661
+regular, 80, 6, OneTree Inverse Mod FR21, 3, 0, 2, 3, 0.200000, 0.000488, 14.968119
+regular, 80, 6, OneTree FR21, 3, 0, 2, 3, 0.200000, 0.000501, 13.291525
+regular, 80, 6, MultipleTrees Invers FR21, 3, 3, 2, 8, 0.400000, 0.000563, 166.333630
+regular, 80, 6, SquareOne FR21, 3, 0, 53, 3, 0.200000, 0.000849, 1.805771
+regular, 80, 6, MultipleTrees Parallel Invers FR21, 3, 0, 2, 3, 0.200000, 0.000558, 181.020715
+regular, 80, 6, MultipleTrees FR21, 4, 18, 2, 20, 0.600000, 0.000654, 159.166325
+regular, 80, 6, OneTree Inverse Mod FR21, 4, 2, 1, 6, 0.600000, 0.000455, 15.137129
+regular, 80, 6, OneTree FR21, 4, 2, 1, 6, 0.600000, 0.000496, 13.252868
+regular, 80, 6, MultipleTrees Invers FR21, 4, 8, 1, 14, 0.800000, 0.000523, 166.026718
+regular, 80, 6, SquareOne FR21, 4, 0, 40, 4, 0.600000, 0.000691, 1.812009
+regular, 80, 6, MultipleTrees Parallel Invers FR21, 4, 0, 1, 4, 0.600000, 0.000497, 181.519020
+regular, 80, 6, MultipleTrees FR21, 5, 7, 2, 10, 0.400000, 0.000617, 159.423940
+regular, 80, 6, OneTree Inverse Mod FR21, 5, 1, 2, 4, 0.400000, 0.000481, 15.126512
+regular, 80, 6, OneTree FR21, 5, 1, 2, 4, 0.400000, 0.000498, 13.254997
+regular, 80, 6, MultipleTrees Invers FR21, 5, 20, 2, 24, 0.600000, 0.000580, 165.737566
+regular, 80, 6, SquareOne FR21, 5, 0, 79, 3, 0.400000, 0.001014, 1.807333
+regular, 80, 6, MultipleTrees Parallel Invers FR21, 5, 0, 1, 3, 0.400000, 0.000548, 181.681601
+regular, 80, 6, MultipleTrees FR21, 6, 6, 3, 11, 0.200000, 0.000639, 158.929234
+regular, 80, 6, OneTree Inverse Mod FR21, 6, inf, inf, inf, 0.000000, 0.000510, 15.223552
+regular, 80, 6, OneTree FR21, 6, inf, inf, inf, 0.000000, 0.000528, 13.235011
+regular, 80, 6, MultipleTrees Invers FR21, 6, 20, 2, 24, 0.400000, 0.000689, 166.175267
+regular, 80, 6, SquareOne FR21, 6, inf, inf, inf, 0.000000, 0.000948, 1.785162
+regular, 80, 6, MultipleTrees Parallel Invers FR21, 6, inf, inf, inf, 0.000000, 0.000582, 181.816574

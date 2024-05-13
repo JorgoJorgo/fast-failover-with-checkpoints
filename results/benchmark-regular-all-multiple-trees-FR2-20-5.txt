@@ -1,0 +1,41 @@
+#graph, size, connectivity, algorithm, index, stretch, load, hops, success, routing computation time, pre-computation time in seconds
+#Fri Apr  7 14:56:50 2023
+regular, 20, 5, MultipleTrees, 0, 5, 2, 7, 1.000000, 0.000181, 1.007607
+regular, 20, 5, MultipleTrees Mod Breite, 0, 4, 1, 5, 1.000000, 0.000174, 1.833777
+regular, 20, 5, MultipleTrees Mod Anzahl, 0, 4, 1, 5, 1.000000, 0.000152, 0.707524
+regular, 20, 5, MultipleTrees Mod Reihenfolge, 0, 3, 0, 4, 1.000000, 0.000165, 1.031293
+regular, 20, 5, MultipleTrees Mod Parallel, 0, 4, 1, 5, 1.000000, 0.000157, 0.867830
+regular, 20, 5, Parallel and Inverse FR2, 0, 1, 0, 4, 1.000000, 0.000141, 1.002533
+regular, 20, 5, Breite and Inverse FR2, 0, 1, 0, 4, 1.000000, 0.000171, 1.890262
+regular, 20, 5, Anzahl and Random FR2, 0, 4, 1, 5, 1.000000, 0.000160, 0.756765
+regular, 20, 5, MultipleTrees Mod Recycling, 0, 4, 0, 5, 1.000000, 0.000158, 1.939474
+regular, 20, 5, SquareOne FR3, 0, 1, 1, 4, 1.000000, 0.000189, 0.037420
+regular, 20, 5, One Tree Breite Mod, 0, 3, 1, 6, 1.000000, 0.000127, 0.348155
+regular, 20, 5, OneTree, 0, 3, 1, 6, 1.000000, 0.000165, 0.206946
+regular, 20, 5, OneTree Inverse Mod FR, 0, 3, 1, 6, 1.000000, 0.000124, 0.234393
+regular, 20, 5, MultipleTrees, 1, 6, 1, 8, 1.000000, 0.000187, 1.019886
+regular, 20, 5, MultipleTrees Mod Breite, 1, 9, 1, 11, 1.000000, 0.000206, 1.822542
+regular, 20, 5, MultipleTrees Mod Anzahl, 1, 2, 0, 3, 1.000000, 0.000146, 0.729547
+regular, 20, 5, MultipleTrees Mod Reihenfolge, 1, 2, 0, 4, 1.000000, 0.000224, 1.080875
+regular, 20, 5, MultipleTrees Mod Parallel, 1, 6, 1, 8, 1.000000, 0.000173, 0.957140
+regular, 20, 5, Parallel and Inverse FR2, 1, 0, 0, 3, 1.000000, 0.000166, 1.031012
+regular, 20, 5, Breite and Inverse FR2, 1, 0, 0, 3, 1.000000, 0.000189, 1.896444
+regular, 20, 5, Anzahl and Random FR2, 1, 2, 0, 3, 1.000000, 0.000155, 0.731312
+regular, 20, 5, MultipleTrees Mod Recycling, 1, 9, 1, 11, 1.000000, 0.000210, 1.967381
+regular, 20, 5, SquareOne FR3, 1, 0, 2, 3, 1.000000, 0.000139, 0.038062
+regular, 20, 5, One Tree Breite Mod, 1, 1, 1, 4, 1.000000, 0.000133, 0.275479
+regular, 20, 5, OneTree, 1, 1, 1, 4, 1.000000, 0.000127, 0.297748
+regular, 20, 5, OneTree Inverse Mod FR, 1, 1, 1, 4, 1.000000, 0.000125, 0.226914
+regular, 20, 5, MultipleTrees, 2, 9, 2, 12, 1.000000, 0.000282, 0.978435
+regular, 20, 5, MultipleTrees Mod Breite, 2, 10, 2, 11, 1.000000, 0.000220, 2.009453
+regular, 20, 5, MultipleTrees Mod Anzahl, 2, 3, 1, 5, 1.000000, 0.000187, 0.791160
+regular, 20, 5, MultipleTrees Mod Reihenfolge, 2, 7, 1, 10, 1.000000, 0.000170, 1.068773
+regular, 20, 5, MultipleTrees Mod Parallel, 2, 8, 3, 11, 1.000000, 0.000198, 0.907925
+regular, 20, 5, Parallel and Inverse FR2, 2, 1, 0, 4, 1.000000, 0.000155, 1.058894
+regular, 20, 5, Breite and Inverse FR2, 2, 2, 1, 5, 1.000000, 0.000170, 1.975538
+regular, 20, 5, Anzahl and Random FR2, 2, 3, 1, 5, 1.000000, 0.000156, 0.719132
+regular, 20, 5, MultipleTrees Mod Recycling, 2, 9, 2, 10, 1.000000, 0.000313, 2.081284
+regular, 20, 5, SquareOne FR3, 2, 2, 1, 5, 1.000000, 0.000149, 0.043446
+regular, 20, 5, One Tree Breite Mod, 2, 3, 1, 6, 1.000000, 0.000133, 0.325688
+regular, 20, 5, OneTree, 2, 3, 1, 6, 1.000000, 0.000129, 0.243129
+regular, 20, 5, OneTree Inverse Mod FR, 2, 3, 1, 6, 1.000000, 0.000136, 0.211850

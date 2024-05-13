@@ -1,0 +1,92 @@
+#graph, size, connectivity, algorithm, index, stretch, load, hops, success, routing computation time, pre-computation time in seconds
+#Sun Mar 19 12:32:12 2023
+regular, 100, 6, MultipleTrees FR6, 0, 5, 1, 6, 1.000000, 0.000451, 324.040789
+regular, 100, 6, OneTree Inverse Mod FR6, 0, 11, 2, 15, 1.000000, 0.000398, 27.767135
+regular, 100, 6, OneTree FR6, 0, 11, 2, 15, 1.000000, 0.000401, 30.654335
+regular, 100, 6, MultipleTrees Invers FR6, 0, 1, 0, 5, 1.000000, 0.000407, 339.905529
+regular, 100, 6, SquareOne FR6, 0, 10, 2, 14, 1.000000, 0.000452, 3.384966
+regular, 100, 6, MultipleTrees Parallel Invers FR6, 0, 10, 1, 14, 1.000000, 0.000435, 406.343135
+regular, 100, 6, MultipleTrees FR6, 1, 6, 1, 7, 0.857143, 0.000484, 324.826449
+regular, 100, 6, OneTree Inverse Mod FR6, 1, 2, 2, 6, 0.857143, 0.000427, 31.162904
+regular, 100, 6, OneTree FR6, 1, 2, 2, 6, 0.857143, 0.000413, 29.857878
+regular, 100, 6, MultipleTrees Invers FR6, 1, 2, 0, 6, 1.000000, 0.000448, 339.308737
+regular, 100, 6, SquareOne FR6, 1, 0, 50, 4, 0.857143, 0.000582, 3.364289
+regular, 100, 6, MultipleTrees Parallel Invers FR6, 1, 0, 1, 4, 0.857143, 0.000460, 402.808850
+regular, 100, 6, MultipleTrees FR6, 2, 6, 1, 9, 1.000000, 0.000481, 325.497487
+regular, 100, 6, OneTree Inverse Mod FR6, 2, 13, 2, 17, 1.000000, 0.000427, 28.916671
+regular, 100, 6, OneTree FR6, 2, 13, 2, 17, 1.000000, 0.000426, 30.320859
+regular, 100, 6, MultipleTrees Invers FR6, 2, 7, 1, 11, 1.000000, 0.000449, 339.369613
+regular, 100, 6, SquareOne FR6, 2, 12, 2, 16, 1.000000, 0.000470, 3.398125
+regular, 100, 6, MultipleTrees Parallel Invers FR6, 2, 10, 1, 14, 1.000000, 0.001014, 402.218521
+regular, 100, 6, MultipleTrees FR6, 3, 11, 1, 13, 0.857143, 0.000499, 325.066689
+regular, 100, 6, OneTree Inverse Mod FR6, 3, 2, 2, 6, 0.857143, 0.000419, 30.264982
+regular, 100, 6, OneTree FR6, 3, 2, 1, 6, 0.857143, 0.000415, 24.658511
+regular, 100, 6, MultipleTrees Invers FR6, 3, 6, 1, 10, 1.000000, 0.000444, 338.412395
+regular, 100, 6, SquareOne FR6, 3, 11, 50, 15, 0.857143, 0.000531, 3.359578
+regular, 100, 6, MultipleTrees Parallel Invers FR6, 3, 4, 1, 8, 0.857143, 0.000462, 396.838251
+regular, 100, 6, MultipleTrees FR6, 4, 11, 1, 13, 1.000000, 0.000492, 325.276159
+regular, 100, 6, OneTree Inverse Mod FR6, 4, 1, 1, 5, 1.000000, 0.000399, 32.145914
+regular, 100, 6, OneTree FR6, 4, 1, 1, 5, 1.000000, 0.000408, 29.746047
+regular, 100, 6, MultipleTrees Invers FR6, 4, 3, 0, 6, 1.000000, 0.000452, 339.587751
+regular, 100, 6, SquareOne FR6, 4, 2, 2, 6, 1.000000, 0.000467, 3.334153
+regular, 100, 6, MultipleTrees Parallel Invers FR6, 4, 2, 1, 6, 1.000000, 0.000448, 401.155542
+regular, 100, 6, MultipleTrees FR6, 5, 4, 1, 8, 1.000000, 0.000478, 326.107693
+regular, 100, 6, OneTree Inverse Mod FR6, 5, 9, 2, 13, 1.000000, 0.000406, 28.363770
+regular, 100, 6, OneTree FR6, 5, 9, 2, 13, 1.000000, 0.000392, 30.748379
+regular, 100, 6, MultipleTrees Invers FR6, 5, 6, 1, 10, 1.000000, 0.001018, 340.457022
+regular, 100, 6, SquareOne FR6, 5, 11, 2, 15, 1.000000, 0.000475, 3.314343
+regular, 100, 6, MultipleTrees Parallel Invers FR6, 5, 10, 2, 14, 1.000000, 0.000486, 396.870856
+regular, 100, 6, MultipleTrees FR6, 6, 7, 1, 11, 1.000000, 0.000508, 326.081439
+regular, 100, 6, OneTree Inverse Mod FR6, 6, 19, 3, 23, 1.000000, 0.000412, 28.556550
+regular, 100, 6, OneTree FR6, 6, 19, 3, 23, 1.000000, 0.000419, 30.700168
+regular, 100, 6, MultipleTrees Invers FR6, 6, 14, 1, 18, 1.000000, 0.000467, 339.272493
+regular, 100, 6, SquareOne FR6, 6, 17, 2, 21, 1.000000, 0.000432, 3.377579
+regular, 100, 6, MultipleTrees Parallel Invers FR6, 6, 15, 2, 19, 1.000000, 0.000483, 393.788302
+regular, 100, 6, MultipleTrees FR6, 7, 7, 1, 11, 1.000000, 0.000481, 326.504589
+regular, 100, 6, OneTree Inverse Mod FR6, 7, 2, 1, 6, 1.000000, 0.000403, 28.253552
+regular, 100, 6, OneTree FR6, 7, 2, 1, 6, 1.000000, 0.000418, 30.216239
+regular, 100, 6, MultipleTrees Invers FR6, 7, 2, 0, 6, 1.000000, 0.000441, 338.566253
+regular, 100, 6, SquareOne FR6, 7, 2, 2, 6, 1.000000, 0.000437, 6.475860
+regular, 100, 6, MultipleTrees Parallel Invers FR6, 7, 2, 1, 6, 1.000000, 0.000437, 394.860858
+regular, 100, 6, MultipleTrees FR6, 8, 5, 1, 8, 1.000000, 0.000503, 325.783722
+regular, 100, 6, OneTree Inverse Mod FR6, 8, 2, 1, 6, 1.000000, 0.000406, 28.070780
+regular, 100, 6, OneTree FR6, 8, 2, 1, 6, 1.000000, 0.000395, 29.989681
+regular, 100, 6, MultipleTrees Invers FR6, 8, 1, 0, 4, 1.000000, 0.000434, 338.414702
+regular, 100, 6, SquareOne FR6, 8, 2, 1, 5, 1.000000, 0.000478, 3.322054
+regular, 100, 6, MultipleTrees Parallel Invers FR6, 8, 2, 1, 5, 1.000000, 0.000445, 396.591934
+regular, 100, 6, MultipleTrees FR6, 9, 11, 1, 13, 1.000000, 0.000488, 324.862458
+regular, 100, 6, OneTree Inverse Mod FR6, 9, 19, 1, 23, 1.000000, 0.000411, 28.838855
+regular, 100, 6, OneTree FR6, 9, 19, 1, 23, 1.000000, 0.000416, 30.294861
+regular, 100, 6, MultipleTrees Invers FR6, 9, 2, 0, 6, 1.000000, 0.001020, 339.865191
+regular, 100, 6, SquareOne FR6, 9, 17, 1, 21, 1.000000, 0.000516, 3.331959
+regular, 100, 6, MultipleTrees Parallel Invers FR6, 9, 15, 1, 19, 1.000000, 0.000466, 402.124485
+regular, 100, 6, MultipleTrees FR6, 10, 17, 1, 20, 1.000000, 0.000503, 325.451199
+regular, 100, 6, OneTree Inverse Mod FR6, 10, 5, 2, 9, 1.000000, 0.000406, 28.380953
+regular, 100, 6, OneTree FR6, 10, 5, 2, 9, 1.000000, 0.000394, 30.787060
+regular, 100, 6, MultipleTrees Invers FR6, 10, 3, 1, 7, 1.000000, 0.000465, 339.484226
+regular, 100, 6, SquareOne FR6, 10, 4, 2, 8, 1.000000, 0.000481, 3.358920
+regular, 100, 6, MultipleTrees Parallel Invers FR6, 10, 4, 1, 8, 1.000000, 0.000450, 396.580007
+regular, 100, 6, MultipleTrees FR6, 11, 10, 1, 13, 1.000000, 0.000506, 326.273891
+regular, 100, 6, OneTree Inverse Mod FR6, 11, 3, 1, 7, 1.000000, 0.000411, 28.618809
+regular, 100, 6, OneTree FR6, 11, 3, 1, 7, 1.000000, 0.000415, 30.718957
+regular, 100, 6, MultipleTrees Invers FR6, 11, 4, 1, 7, 1.000000, 0.000456, 338.970380
+regular, 100, 6, SquareOne FR6, 11, 4, 2, 8, 1.000000, 0.000438, 3.362680
+regular, 100, 6, MultipleTrees Parallel Invers FR6, 11, 4, 1, 8, 1.000000, 0.000449, 392.471582
+regular, 100, 6, MultipleTrees FR6, 12, 6, 1, 9, 1.000000, 0.000482, 326.158551
+regular, 100, 6, OneTree Inverse Mod FR6, 12, 13, 2, 17, 1.000000, 0.000408, 28.117775
+regular, 100, 6, OneTree FR6, 12, 13, 2, 17, 1.000000, 0.000418, 30.278606
+regular, 100, 6, MultipleTrees Invers FR6, 12, 7, 1, 11, 1.000000, 0.000447, 338.645411
+regular, 100, 6, SquareOne FR6, 12, 12, 2, 16, 1.000000, 0.000435, 6.565958
+regular, 100, 6, MultipleTrees Parallel Invers FR6, 12, 10, 1, 14, 1.000000, 0.000449, 393.602776
+regular, 100, 6, MultipleTrees FR6, 13, 6, 1, 8, 1.000000, 0.000497, 325.429809
+regular, 100, 6, OneTree Inverse Mod FR6, 13, 3, 1, 7, 1.000000, 0.000408, 28.057246
+regular, 100, 6, OneTree FR6, 13, 3, 1, 7, 1.000000, 0.000400, 29.857792
+regular, 100, 6, MultipleTrees Invers FR6, 13, 2, 0, 6, 1.000000, 0.000433, 338.655219
+regular, 100, 6, SquareOne FR6, 13, 4, 1, 8, 1.000000, 0.000483, 3.334584
+regular, 100, 6, MultipleTrees Parallel Invers FR6, 13, 4, 1, 8, 1.000000, 0.000453, 397.889599
+regular, 100, 6, MultipleTrees FR6, 14, 11, 2, 15, 1.000000, 0.000496, 325.082269
+regular, 100, 6, OneTree Inverse Mod FR6, 14, 5, 2, 8, 1.000000, 0.000416, 28.900632
+regular, 100, 6, OneTree FR6, 14, 5, 2, 8, 1.000000, 0.000416, 30.350342
+regular, 100, 6, MultipleTrees Invers FR6, 14, 2, 0, 5, 1.000000, 0.000468, 339.930685
+regular, 100, 6, SquareOne FR6, 14, 5, 2, 8, 1.000000, 0.000470, 3.333895
+regular, 100, 6, MultipleTrees Parallel Invers FR6, 14, 5, 1, 8, 1.000000, 0.000471, 402.159748
