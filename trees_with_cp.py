@@ -8,7 +8,7 @@ from matplotlib.patches import Patch
 import networkx as nx
 import numpy as np
 import itertools
-
+from itertools import combinations, permutations
 from arborescences import *
 
 
@@ -180,45 +180,61 @@ def one_tree_with_random_checkpoint(source, destination, graph, longest_edp, rev
     if(reverse):
         
         
-        longest_edp = list(reversed(longest_edp))
+        # Generate custom layout
+        pos = generate_planar_layout(tree, source)
+
+        # Draw the tree using the custom layout
         
-         # Flipping all edges if 'reverse' is True
+        nx.draw(tree, pos, with_labels=True, arrows=True)
+        
+        # Koordinaten als Beschriftungen anzeigen
+        for node, (x, y) in pos.items():
+            plt.text(x, y, f'({x:.2f}, {y:.2f})', fontsize=12, ha='right')
+
+        plt.show()
+        
+        #first the tree cp -> s needs to be given coordinates that enable a planar layout
+        
+        # longest_edp = list(reversed(longest_edp))
+        
+        #  # Flipping all edges if 'reverse' is True
          
-        tree_copy = tree.copy()
+        # tree_copy = tree.copy()
         
-        for u, v in tree.edges():
+        # for u, v in tree.edges():
             
-            tree_copy.remove_edge(u,v)
+        #     tree_copy.remove_edge(u,v)
             
-            tree_copy.add_edge(v, u)
+        #     tree_copy.add_edge(v, u)
             
-        #end for
+        # #end for
         
-        tree = tree_copy
+        # tree = tree_copy
         
-        #after flipping the edges the source and destination need to change too
+        # #after flipping the edges the source and destination need to change too
         
-        old_source = source
+        # old_source = source
         
-        source = destination
+        # source = destination
         
-        destination = old_source
+        # destination = old_source
 
-        print(list(graph.neighbors(source)))
+        # print(list(graph.neighbors(source)))
 
-        ######################################################################################
-        plot_tree_with_highlighted_nodes(tree,source,destination,list(graph.neighbors(source)))
-        ######################################################################################
+        # ######################################################################################
+        # plot_tree_with_highlighted_nodes(tree,source,destination,list(graph.neighbors(source)))
+        # ######################################################################################
         
-        rank_tree_for_cp_algorithms(tree , source,longest_edp)
+        # rank_tree_for_cp_algorithms(tree , source,longest_edp)
     
-        connect_leaf_to_destination(tree, source, destination)
+        # connect_leaf_to_destination(tree, source, destination)
     
-        tree.add_edge(longest_edp[len(longest_edp)-2],destination)
+        # tree.nx.draw(tree, pos, with_labels=True, arrows=True)
+        # add_edge(longest_edp[len(longest_edp)-2],destination)
     
-        #add 'rank' property to the added destinaton, -1 for highest priority in routing
+        # #add 'rank' property to the added destinaton, -1 for highest priority in routing
         
-        tree.nodes[destination]["rank"] = -1
+        # tree.nodes[destination]["rank"] = -1
     
     else: #if the tree build is for cp->d nothing is changed
     
@@ -236,51 +252,95 @@ def one_tree_with_random_checkpoint(source, destination, graph, longest_edp, rev
     
     return tree
 
-def rank_tree_for_cp_algorithms(tree, source, edp):
-    # Initialize all nodes with a very large rank
-    nx.set_node_attributes(tree, float('inf'), name="rank")
+def edges_cross(p1, p2, p3, p4):
+    """Check if two line segments (p1-p2 and p3-p4) cross."""
+    def ccw(A, B, C):
+        return (C[1] - A[1]) * (B[0] - A[0]) > (B[1] - A[1]) * (C[0] - A[0])
+    return ccw(p1, p3, p4) != ccw(p2, p3, p4) and ccw(p1, p2, p3) != ccw(p1, p2, p4)
 
-    # Extract edges of the EDP
-    edp_edges = [(edp[i-1], edp[i]) for i in range(1, len(edp))]
+def check_planarity(pos, edges):
+    """Check if the current layout has any crossing edges."""
+    for (u1, v1), (u2, v2) in combinations(edges, 2):
+        if edges_cross(pos[u1], pos[v1], pos[u2], pos[v2]):
+            return False
+    return True
 
-    # Perform topological sorting
-    sorted_nodes = list(nx.topological_sort(tree))
+def custom_tree_layout(tree, root, leaf_order, x_dist=1.0, y_dist=1.0):
+    pos = {}
+    # Arrange leaves vertically with regular spacing on the left
+    for i, leaf in enumerate(leaf_order):
+        pos[leaf] = (0, i * y_dist)
 
-    # Assign ranks based on the sorted order
-    for node in sorted_nodes:
-        # Skip source node
-        if node == source:
-            continue
-
-        # Determine minimum rank among children
-        min_rank = min([tree.nodes[child]["rank"] for child in tree.successors(node)])
-
-        # Assign rank to the node
-        tree.nodes[node]["rank"] = min_rank + 1 if min_rank != float('inf') else 0
-
-    # Adjust ranks to prioritize EDP nodes
-    for node in sorted_nodes:
-        # Skip source node
-        if node == source:
-            continue
-
-        # Determine successors of the node
+    
+    def assign_pos(node):
         children = list(tree.successors(node))
+        if not children:  # Leaf nodes already have positions
+            return pos[node]
 
         for child in children:
-            if (node, child) in edp_edges:
-                # Sort children by rank
-                children.sort(key=lambda x: tree.nodes[x]["rank"])
+            if child not in pos:
+                assign_pos(child)
 
-                # Assign minimum rank to EDP node
-                tree.nodes[child]["rank"] = tree.nodes[children[0]]["rank"]
+        min_y = min(pos[child][1] for child in children)
+        max_y = max(pos[child][1] for child in children)
+        mean_y = (min_y + max_y) / 2
 
-                # Update ranks of other children
-                for other_child in children[1:]:
-                    tree.nodes[other_child]["rank"] += 1
+        if len(children) == 1:
+            pos[node] = (pos[children[0]][0] + x_dist, pos[children[0]][1])
+        else:
+            pos[node] = (pos[children[0]][0] + x_dist, mean_y)
 
-                break  # Exit loop after processing EDP node
+    assign_pos(root)
+    
+    if(leaf_order == (13, 59, 25, 30, 38)):
+        nx.draw(tree, pos, with_labels=True, arrows=True)
+            
+        for node, (x, y) in pos.items():
+            
+                plt.text(x, y, f'({x:.2f}, {y:.2f})', fontsize=12, ha='right')
+                
+        plt.show()
+    
+    return pos
 
+def generate_planar_layout(tree, root, x_dist=1.0, initial_y_dist=1.0, increment=0.5):
+    y_dist = initial_y_dist
+    leaves = [node for node in tree.nodes if tree.out_degree(node) == 0]
+
+    while True:
+        
+        for leaf_order in permutations(leaves):
+            
+            print(leaf_order)
+            
+            pos = custom_tree_layout(tree, root, leaf_order, x_dist, y_dist)
+            
+            
+            if(leaf_order == (13, 59, 25, 30, 38)):
+                print("Checke besonderen Leaf Order CUSTOM : ", check_planarity(pos, tree.edges))
+                is_planar, P = nx.check_planarity(tree)
+                print("Checke besonderen Leaf Order NETWORKX: ", is_planar)
+                
+                if is_planar:
+                    # Generate planar layout from the planar embedding
+                    planar_pos = nx.planar_layout(P)
+
+                    # Draw the planar graph using the planar layout
+                    nx.draw(tree, planar_pos, with_labels=True, arrows=True)
+                    for node, (x, y) in planar_pos.items():
+                        plt.text(x, y, f'({x:.2f}, {y:.2f})', fontsize=12, ha='right')
+
+                    plt.show()
+
+                
+            if check_planarity(pos, tree.edges):
+            
+                return pos
+        
+        input(" ")   
+        
+        
+        y_dist += increment
 
 
 def plot_tree_with_highlighted_nodes(tree, source, destination, highlighted_nodes):
