@@ -33,7 +33,7 @@ DEBUG = True
 
 #Hier erfolgt die Ausführung von OneTree
 algos = {#'One Tree': [one_tree_pre, RouteOneTree],
-         'One Tree Checkpoint':[one_tree_with_random_checkpoint_pre,RouteOneTree]}
+         'One Tree Checkpoint':[one_tree_with_random_checkpoint_pre,RouteWithOneCheckpointOneTree]}
 
 # run one experiment with graph g
 # out denotes file handle to write results to
@@ -253,7 +253,7 @@ def experiments(switch="all", seed=0, rep=100):
 
 if __name__ == "__main__":
     f_num = 15 #number of failed links
-    n = 60 # number of nodes
+    n = 20 # number of nodes
     k = 5 #base connectivity
     samplesize = 5 #number of sources to route a packet to destination
     rep = 3 #number of experiments

@@ -1,3 +1,4 @@
+import math
 import sys
 import networkx as nx
 import numpy as np
@@ -26,6 +27,292 @@ def set_params(params):
 def set_routing_params(params):
     global seed, n, rep, k, samplesize, name, f_num
     [n, rep, k, samplesize, f_num, seed, name] = params
+
+
+#paths structure  for routing with a checkpoint: 
+#paths[source][destination] = {
+#                                                'cp': cp,
+#                                                'faces_cp_to_s': faces_cp_to_s, 
+#                                                'edps_cp_to_s': edps_cp_to_s,
+#                                                'tree_cp_to_d': tree_cp_to_d, 
+#                                                'edps_cp_to_d': edps_cp_to_d,
+#                                            }
+
+# the routing with ONE checkpoint and with ONE tree first tries to route using 
+# the face-routing from s -> cp and after that the tree-routing from cp -> d
+def RouteWithOneCheckpointOneTree(s,d,fails,paths):
+    
+    print("Routing with a checkpoint started for : ", s , " -> " , d) 
+    
+    detour_edges = []
+    hops = 0
+    switches = 0
+    
+    cp = paths[s][d]['cp']
+    faces_cp_to_s  = paths[s][d]['faces_cp_to_s']
+    edps_cp_to_s = paths[s][d]['edps_cp_to_s']
+    tree_cp_to_d  = paths[s][d]['tree_cp_to_d']
+    edps_cp_to_d   = paths[s][d]['edps_cp_to_d']
+    
+    
+    #now the first step of the routing consists of face-routing from S to CP
+    routing_failure_faces, hops_faces, switches_faces, detour_edges_faces = RouteFaces(s,cp,fails,faces_cp_to_s)
+    
+    if(routing_failure_faces):
+        print("Routing failed via Faces from S to CP ")
+        print(" ")
+        return (True, hops_faces, switches_faces, detour_edges_faces)
+    
+    #since the routing for the trees was build prior to routing of the faces, the paths structure has changed
+    #therefore the new paths structure needs to be converted to the old structure
+    
+    #new structure:
+    #paths[source][destination] = {
+    #                              'cp': cp,
+    #                              'faces_cp_to_s': faces_cp_to_s, 
+    #                              'edps_cp_to_s': edps_cp_to_s,
+    #                              'tree_cp_to_d': tree_cp_to_d, 
+    #                              'edps_cp_to_d': edps_cp_to_d,
+    #                             } 
+    
+    #old structure:
+    #paths[source][destination] = {
+    #                               'tree': tree,
+    #                               'edps': edps
+    #                              }
+
+    
+    # Create a new variable for the converted paths
+    converted_paths = {}
+
+    # Iterate over the paths in the old format
+    for source, destinations in paths.items():
+        # Create an entry for the current source in the new format
+        converted_paths[source] = {}
+        input("Test1")
+        # Iterate over the destinations in the old format
+        for destination, data in destinations.items():
+            input("Test2")
+            # Create an entry for the current destination in the new format
+            converted_paths[source][destination] = {
+                'tree': data['tree_cp_to_d'], # Insert the new 'tree' here
+                'edps': data['edps_cp_to_d']  # Insert the new 'edps' here
+            }
+            print("Converted Paths : " , converted_paths[source][destination])
+            print("Tree : ", converted_paths[source][destination]['tree'])
+            print("Edps : ", converted_paths[source][destination]['edps'])
+
+            
+    input(" Before tree Routing ")
+    
+    #after that the routing continues from CP to D using the tree-routing
+    routing_failure_tree, hops_tree, switches_tree, detour_edges_tree = RouteOneTree(s,d,fails,converted_paths)
+    
+    if(routing_failure_tree):
+        print("Routing failed via Tree from CP to D ")
+        print(" ")
+        return (True, hops_tree, switches_tree, detour_edges_tree)    
+    
+    #if both parts of the routing did not fail then the results of each one need to be combined
+    
+    hops = hops_faces + hops_tree
+    switches = switches_faces + switches_tree
+    detour_edges = []
+    
+
+    # Füge die Kanten aus der ersten Liste hinzu
+    for edge in detour_edges_tree:
+        detour_edges.append(edge)
+
+    # Füge die Kanten aus der zweiten Liste hinzu
+    for edge in detour_edges_faces:
+        detour_edges.append(edge)
+        
+    print("Routing succesful with the Checkpoint")
+    print('------------------------------------------------------')
+    print(" ")
+    return (False, hops, switches, detour_edges)
+        
+        
+########################### HELPER FUNCTIONS FACES ###################################################################
+
+# Helper function to find the closer point to the destination
+def closer_point(point1, point2, reference_point):
+
+    distance1 = math.sqrt((point1[0] - reference_point[0])**2 + (point1[1] - reference_point[1])**2)
+    distance2 = math.sqrt((point2[0] - reference_point[0])**2 + (point2[1] - reference_point[1])**2)
+
+    if distance1 < distance2:
+        return point1
+    else:
+        return point2
+
+# Helper function to get the intersection point of 2 edges using the position parameters
+def intersection_point(pos_edge1, pos_edge2):
+    x1, y1 = pos_edge1[0]
+    x2, y2 = pos_edge1[1]
+    x3, y3 = pos_edge2[0]
+    x4, y4 = pos_edge2[1]
+
+    # Calculate the parameters for the line equations of the two edges
+    a1 = y2 - y1
+    b1 = x1 - x2
+    c1 = x2 * y1 - x1 * y2
+
+    a2 = y4 - y3
+    b2 = x3 - x4
+    c2 = x4 * y3 - x3 * y4
+
+    # Calculate the intersection point
+    det = a1 * b2 - a2 * b1
+
+    if det == 0:
+        # The edges are parallel, there's no unique intersection point
+        return None
+    else:
+        x = (b1 * c2 - b2 * c1) / det
+        y = (a2 * c1 - a1 * c2) / det
+
+        # Check if the intersection point lies within the bounded segment
+        if min(x1, x2) <= x <= max(x1, x2) and min(y1, y2) <= y <= max(y1, y2) and \
+           min(x3, x4) <= x <= max(x3, x4) and min(y3, y4) <= y <= max(y3, y4):
+            return x, y
+        else:
+            return None
+        
+# Find the distance between 2 points
+# Used to find the closer point
+def euclidean_distance(point1, point2):
+    return ((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2) ** 0.5
+
+# Helper function to find the opposite face of an edge
+def find_opposite_face(currentEdge, faces):
+    # Iterate over the neighbors of the current face
+    for neighborFace in faces:
+        # Find the common edges
+        common_edges = set(currentEdge) & set(neighborFace.edges)
+        # If there is exactly one common edge, it's the opposite face
+        if len(common_edges) == 1:
+            oppositeFace = neighborFace
+            return oppositeFace
+
+    # If no or more than one common edge was found, something is wrong
+    return None
+
+# Helper function to create the intersection structure
+def create_intersection_structure(length):
+
+    intersection_structure = []
+
+    for i in range(length):
+        intersection_structure.append((-99999999999, -99999999999999, -99999999999999999999, -99999999999999999))
+    
+    return intersection_structure
+
+# Helper function to find the closer point to point3 between point1 and point2
+def find_closest_point(point1, point2, target_point):
+    x1, y1, id1 = point1
+    x2, y2, id2 = point2
+    x_target, y_target, target_id = target_point
+
+    distance1 = ((x1 - x_target)**2 + (y1 - y_target)**2)**0.5
+    distance2 = ((x2 - x_target)**2 + (y2 - y_target)**2)**0.5
+
+    if distance1 < distance2:
+        return point1
+    else:
+        return point2
+############################################################################################################
+
+def RouteFaces(s,d,fails,faces):
+    print("Faces in START of Route faces : ",faces)
+    input(" ")
+    detour_edges = []
+    hops = 0
+    switches = 0
+
+    skipSonderfall = False
+    # The whole graph is in the last index of faces
+    faces[len(faces)-1].add_edge(s, d)
+
+    imaginary_edge = (s,d)
+    pos_imaginary_edge = (
+                faces[len(faces) - 1].nodes[s]['pos'],
+                faces[len(faces) - 1].nodes[d]['pos']
+            )
+    
+    print("Routing in faces started for : ", s , " -> " , d) 
+
+
+    currentNode = s
+
+    # First, find the first face from which you start, only the faces from s are available
+    possible_start_faces = [face for face in faces[:-1] if s in face]
+
+    # here I save the intersection points of each face
+
+    intersection_points_start_faces = []
+
+    for i in range(len(possible_start_faces)+1):  
+
+        #positionX intersection , positionY intersection, nodeX , nodeY 
+        item = (-99999999999,-99999999999999 , -99999999999999999999 , -99999999999999999)
+
+        intersection_points_start_faces.append(item)
+
+    indexJ = 0
+    
+    for start_face in possible_start_faces:
+        
+        old_Node = s
+
+        currentNodeInStartFace = s
+
+        next_node = list(start_face.neighbors(s))[0]
+        
+        # Save the intersection of each start-face with the imaginary edge
+
+        #-2 because the last index is the whole graph and one always adds +1 to the index
+        for i in range(len(start_face.nodes)-1):
+
+            current_edge = (currentNodeInStartFace, next_node)
+            
+            # get the position of the current_edge
+            pos_current_edge = (
+                faces[len(faces) - 1].nodes[currentNodeInStartFace]['pos'],
+                faces[len(faces) - 1].nodes[next_node]['pos']
+            )
+
+            if(next_node == d):
+                print("Routing succesful via Start-Faces")
+                print('------------------------------------------------------')
+                print(" ")
+                return (False, hops, switches, detour_edges)
+            
+            intersection = intersection_point(pos_current_edge, pos_imaginary_edge)
+
+            if(intersection != None):
+
+                currentNewIntersectionPoint = (intersection[0],intersection[1])
+
+                currentIntersectionPoint = (intersection_points_start_faces[indexJ][0],intersection_points_start_faces[indexJ][1])
+
+                currentImaginaryPoint = (faces[len(faces) - 1].nodes[d]['pos'][0], faces[len(faces) - 1].nodes[d]['pos'][1])
+
+
+                
+                new_intersection = closer_point(currentNewIntersectionPoint, currentIntersectionPoint ,currentImaginaryPoint)
+
+                if(new_intersection == intersection):
+     
+                    intersection_points_start_faces[indexJ] = (intersection[0],intersection[1],currentNode,next_node)
+                    
+
+                
+            detour_edges.append((currentNode,next_node))
+
+            old_Node = currentNodeInStartFace
+
 
 
 #in dieser funktion findet das routing eines source-destination-paares für multipletrees statt

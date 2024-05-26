@@ -2,6 +2,7 @@ from platform import node
 import sys
 import time
 from traceback import print_list
+import traceback
 from typing import List, Any, Union
 import random
 from matplotlib.patches import Patch
@@ -65,54 +66,21 @@ def one_tree_with_random_checkpoint_pre(graph):
                 
                 edps_cp_to_s.sort(key=len)
                 
-                print("EDPs to source :", edps_cp_to_s)
+                #print("EDPs to source :", edps_cp_to_s)
                 
                 edps_cp_to_d.sort(key=len)
                 
-                print("EDPs to destination :", edps_cp_to_d)
+                #print("EDPs to destination :", edps_cp_to_d)
                 
                 
                 
                 #and build trees out of the longest_edps_cp_s and the longest_edps_cp_d
                 
-                tree_cp_to_s = one_tree_with_random_checkpoint(cp,source,graph,edps_cp_to_s[len(edps_cp_to_s)-1], True)
+                faces_cp_to_s = one_tree_with_random_checkpoint(cp,source,graph,edps_cp_to_s[len(edps_cp_to_s)-1], True)
                 
                 tree_cp_to_d = one_tree_with_random_checkpoint(cp,destination,graph,edps_cp_to_d[len(edps_cp_to_d)-1], False)
                 
                 
-                ####################################################################################
-                if(debug):
-                    # print trees for debug
-
-                    pos_s = nx.spring_layout(tree_cp_to_s)  
-                    root_position_s = (0, 1)
-                    level_height_s = 0.5
-
-                    
-                    pos_s[source] = (root_position_s[0] - 0.5, root_position_s[1] - level_height_s)
-                    pos_s[destination] = (root_position_s[0] + 0.5, root_position_s[1] - level_height_s)
-
-                    pos_s[cp] = (1, 0)
-
-                    plt.figure(figsize=(7, 7))
-                    nx.draw(tree_cp_to_s, pos=pos_s, with_labels=True)
-                    plt.title('tree_cp_to_s')
-                    plt.show()
-
-                    pos_d = nx.spring_layout(tree_cp_to_d) 
-                    root_position_d = (0, 1)
-                    level_height_d = 0.5
-
-                    pos_d[source] = (root_position_d[0] - 0.5, root_position_d[1] - level_height_d)
-                    pos_d[destination] = (root_position_d[0] + 0.5, root_position_d[1] - level_height_d)
-
-                    pos_d[cp] = (-1, 0)
-
-                    plt.figure(figsize=(7, 7))
-                    nx.draw(tree_cp_to_d, pos=pos_d, with_labels=True)
-                    plt.title('tree_cp_to_d')
-                    plt.show()
-                #####################################################################################
 
                 #bc the tree cp->s got build reverse direction the edges need to be reversed again
     
@@ -121,7 +89,7 @@ def one_tree_with_random_checkpoint_pre(graph):
                 
                 paths[source][destination] = {
                                                 'cp': cp,
-                                                'tree_cp_to_s': tree_cp_to_s, 
+                                                'faces_cp_to_s': faces_cp_to_s, 
                                                 'edps_cp_to_s': edps_cp_to_s,
                                                 'tree_cp_to_d': tree_cp_to_d, 
                                                 'edps_cp_to_d': edps_cp_to_d,
@@ -171,7 +139,9 @@ def one_tree_with_random_checkpoint(source, destination, graph, longest_edp, rev
     
 
     changed = True 
+    
     while changed == True: #keep trying to shorten until no more can be shortened 
+        
         old_tree = tree.copy()
         remove_redundant_paths(source, destination, tree, graph)
         changed = tree.order() != old_tree.order() # order returns the number of nodes in the graph.
@@ -179,63 +149,31 @@ def one_tree_with_random_checkpoint(source, destination, graph, longest_edp, rev
     #before ranking the tree, if the the is build for cp->s the edges need to be flipped
     if(reverse):
         
+        #the current tree has:
+        # source = cp (from the global graph)
+        # destination = source (from the global graph)
         
-        # Generate custom layout
-        pos = generate_planar_layout(tree, source)
+        
+        connect_leaf_to_destination(tree,source,destination)
+        
+        #in order to find and traverse faces the tree need to be an undirected graph
+        undirected_tree = tree.to_undirected()
+        
+        tree = undirected_tree
+        
+        is_planar, P = nx.check_planarity(tree)
+        
+        # Generate planar layout from the planar embedding
+        planar_pos = nx.planar_layout(P)
+        
+        faces = find_faces(P,planar_pos )
+        
+        
+        print("Faces in OneTree Aglorithm : ", faces)
+        
+        return faces
 
-        # Draw the tree using the custom layout
-        
-        nx.draw(tree, pos, with_labels=True, arrows=True)
-        
-        # Koordinaten als Beschriftungen anzeigen
-        for node, (x, y) in pos.items():
-            plt.text(x, y, f'({x:.2f}, {y:.2f})', fontsize=12, ha='right')
 
-        plt.show()
-        
-        #first the tree cp -> s needs to be given coordinates that enable a planar layout
-        
-        # longest_edp = list(reversed(longest_edp))
-        
-        #  # Flipping all edges if 'reverse' is True
-         
-        # tree_copy = tree.copy()
-        
-        # for u, v in tree.edges():
-            
-        #     tree_copy.remove_edge(u,v)
-            
-        #     tree_copy.add_edge(v, u)
-            
-        # #end for
-        
-        # tree = tree_copy
-        
-        # #after flipping the edges the source and destination need to change too
-        
-        # old_source = source
-        
-        # source = destination
-        
-        # destination = old_source
-
-        # print(list(graph.neighbors(source)))
-
-        # ######################################################################################
-        # plot_tree_with_highlighted_nodes(tree,source,destination,list(graph.neighbors(source)))
-        # ######################################################################################
-        
-        # rank_tree_for_cp_algorithms(tree , source,longest_edp)
-    
-        # connect_leaf_to_destination(tree, source, destination)
-    
-        # tree.nx.draw(tree, pos, with_labels=True, arrows=True)
-        # add_edge(longest_edp[len(longest_edp)-2],destination)
-    
-        # #add 'rank' property to the added destinaton, -1 for highest priority in routing
-        
-        # tree.nodes[destination]["rank"] = -1
-    
     else: #if the tree build is for cp->d nothing is changed
     
         rank_tree(tree , source,longest_edp)
@@ -247,101 +185,84 @@ def one_tree_with_random_checkpoint(source, destination, graph, longest_edp, rev
         #add 'rank' property to the added destinaton, -1 for highest priority in routing
         tree.nodes[destination]["rank"] = -1
         
+        return tree    
         
     #end if
     
-    return tree
-
-def edges_cross(p1, p2, p3, p4):
-    """Check if two line segments (p1-p2 and p3-p4) cross."""
-    def ccw(A, B, C):
-        return (C[1] - A[1]) * (B[0] - A[0]) > (B[1] - A[1]) * (C[0] - A[0])
-    return ccw(p1, p3, p4) != ccw(p2, p3, p4) and ccw(p1, p2, p3) != ccw(p1, p2, p4)
-
-def check_planarity(pos, edges):
-    """Check if the current layout has any crossing edges."""
-    for (u1, v1), (u2, v2) in combinations(edges, 2):
-        if edges_cross(pos[u1], pos[v1], pos[u2], pos[v2]):
-            return False
-    return True
-
-def custom_tree_layout(tree, root, leaf_order, x_dist=1.0, y_dist=1.0):
-    pos = {}
-    # Arrange leaves vertically with regular spacing on the left
-    for i, leaf in enumerate(leaf_order):
-        pos[leaf] = (0, i * y_dist)
-
     
-    def assign_pos(node):
-        children = list(tree.successors(node))
-        if not children:  # Leaf nodes already have positions
-            return pos[node]
 
-        for child in children:
-            if child not in pos:
-                assign_pos(child)
-
-        min_y = min(pos[child][1] for child in children)
-        max_y = max(pos[child][1] for child in children)
-        mean_y = (min_y + max_y) / 2
-
-        if len(children) == 1:
-            pos[node] = (pos[children[0]][0] + x_dist, pos[children[0]][1])
-        else:
-            pos[node] = (pos[children[0]][0] + x_dist, mean_y)
-
-    assign_pos(root)
+# Find all the faces of a planar graph
+def find_faces(G, pos):
     
-    if(leaf_order == (13, 59, 25, 30, 38)):
-        nx.draw(tree, pos, with_labels=True, arrows=True)
-            
-        for node, (x, y) in pos.items():
-            
-                plt.text(x, y, f'({x:.2f}, {y:.2f})', fontsize=12, ha='right')
-                
-        plt.show()
+    #print(G)
     
-    return pos
+    #input(" ")
+    
+    face_nodes = ()
+    
+    half_edges_in_faces = set()
 
-def generate_planar_layout(tree, root, x_dist=1.0, initial_y_dist=1.0, increment=0.5):
-    y_dist = initial_y_dist
-    leaves = [node for node in tree.nodes if tree.out_degree(node) == 0]
+    faces = []
 
-    while True:
-        
-        for leaf_order in permutations(leaves):
-            
-            print(leaf_order)
-            
-            pos = custom_tree_layout(tree, root, leaf_order, x_dist, y_dist)
-            
-            
-            if(leaf_order == (13, 59, 25, 30, 38)):
-                print("Checke besonderen Leaf Order CUSTOM : ", check_planarity(pos, tree.edges))
-                is_planar, P = nx.check_planarity(tree)
-                print("Checke besonderen Leaf Order NETWORKX: ", is_planar)
-                
-                if is_planar:
-                    # Generate planar layout from the planar embedding
-                    planar_pos = nx.planar_layout(P)
 
-                    # Draw the planar graph using the planar layout
-                    nx.draw(tree, planar_pos, with_labels=True, arrows=True)
-                    for node, (x, y) in planar_pos.items():
-                        plt.text(x, y, f'({x:.2f}, {y:.2f})', fontsize=12, ha='right')
+    for node in G.nodes:
+
+        for dest in nx.neighbors(G, node):
+
+            # check every half edge of node if it is in a face
+            if (node, dest) not in half_edges_in_faces:
+
+                # This half edge has no face assigned
+                found_half_edges = set()
+
+                try:
+                    face_nodes = G.traverse_face(node, dest, found_half_edges)
+
+                except Exception as e:
+
+                    nx.draw(G, pos, with_labels=True, node_size=700, node_color="red", font_size=8)
 
                     plt.show()
+                    
+                    traceback.print_exc()
+                    
+                    print(f"An unexpected error occurred: {e}")
+                    
+                half_edges_in_faces.update(found_half_edges)
 
-                
-            if check_planarity(pos, tree.edges):
-            
-                return pos
-        
-        input(" ")   
-        
-        
-        y_dist += increment
+                # Create a subgraph for the face
+                face_graph = G.subgraph(face_nodes).copy()
 
+                # Add positions to nodes in the face graph
+                for face_node in face_graph.nodes:
+                    face_graph.nodes[face_node]['pos'] = pos[face_node]
+
+                faces.append(face_graph)
+
+
+    #ganz am ende muss der ganze Graph noch rein um die imaginäre Kante in jedem Durchlauf zu bilden
+    #und dann immer die Schnittpunkte zu bestimmen
+    
+    graph_last = G.copy()
+    
+    for node in graph_last:
+        
+        graph_last.nodes[node]['pos'] = pos[node]
+        
+    faces.append(graph_last)
+    
+    
+    
+    #print("Faces : ")
+    #for face in faces[:-1]:
+    #    print(list(face))
+        
+    #nx.draw(G, pos, with_labels=True, node_size=1200, node_color="green", font_size=9)
+    
+    #plt.show()
+    print("Faces in END of find_faces : ", faces)
+    
+    return faces
 
 def plot_tree_with_highlighted_nodes(tree, source, destination, highlighted_nodes):
     # Generate positions using spring layout
