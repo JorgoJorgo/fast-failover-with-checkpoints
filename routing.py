@@ -54,8 +54,11 @@ def RouteWithOneCheckpointOneTree(s,d,fails,paths):
     tree_cp_to_d  = paths[s][d]['tree_cp_to_d']
     edps_cp_to_d   = paths[s][d]['edps_cp_to_d']
     
-    
+    routing_failure_faces = False
     #now the first step of the routing consists of face-routing from S to CP
+    
+    #print("RouteFaces Return : ",RouteFaces(s,cp,fails,faces_cp_to_s))
+    
     routing_failure_faces, hops_faces, switches_faces, detour_edges_faces = RouteFaces(s,cp,fails,faces_cp_to_s)
     
     if(routing_failure_faces):
@@ -89,24 +92,27 @@ def RouteWithOneCheckpointOneTree(s,d,fails,paths):
     for source, destinations in paths.items():
         # Create an entry for the current source in the new format
         converted_paths[source] = {}
-        input("Test1")
+        
         # Iterate over the destinations in the old format
         for destination, data in destinations.items():
-            input("Test2")
+            
             # Create an entry for the current destination in the new format
             converted_paths[source][destination] = {
                 'tree': data['tree_cp_to_d'], # Insert the new 'tree' here
                 'edps': data['edps_cp_to_d']  # Insert the new 'edps' here
             }
-            print("Converted Paths : " , converted_paths[source][destination])
-            print("Tree : ", converted_paths[source][destination]['tree'])
-            print("Edps : ", converted_paths[source][destination]['edps'])
+            #print("Converted Paths : " , converted_paths[source][destination])
+            #print("Tree : ", converted_paths[source][destination]['tree'])
+            #print("Edps : ", converted_paths[source][destination]['edps'])
 
             
-    input(" Before tree Routing ")
+    
+    #input(" Before tree Routing ")
     
     #after that the routing continues from CP to D using the tree-routing
     routing_failure_tree, hops_tree, switches_tree, detour_edges_tree = RouteOneTree(s,d,fails,converted_paths)
+    
+    #print( "RouteOneTree Return : " ,RouteOneTree(s,d,fails,converted_paths))
     
     if(routing_failure_tree):
         print("Routing failed via Tree from CP to D ")
@@ -225,14 +231,16 @@ def find_closest_point(point1, point2, target_point):
 ############################################################################################################
 
 def RouteFaces(s,d,fails,faces):
-    print("Faces in START of Route faces : ",faces)
-    input(" ")
+    
     detour_edges = []
+    
     hops = 0
+    
     switches = 0
 
     skipSonderfall = False
-    # The whole graph is in the last index of faces
+
+    #im letzten index von faces ist der ganze graph drin##################################
     faces[len(faces)-1].add_edge(s, d)
 
     imaginary_edge = (s,d)
@@ -246,10 +254,10 @@ def RouteFaces(s,d,fails,faces):
 
     currentNode = s
 
-    # First, find the first face from which you start, only the faces from s are available
+    #als erstes muss man das erste Face finden von dem man aus startet, dafür stehen nur die Faces von s zur verfügung
     possible_start_faces = [face for face in faces[:-1] if s in face]
 
-    # here I save the intersection points of each face
+    #hier speicher ich mir die schnittpunkte von jedem face
 
     intersection_points_start_faces = []
 
@@ -270,14 +278,17 @@ def RouteFaces(s,d,fails,faces):
 
         next_node = list(start_face.neighbors(s))[0]
         
-        # Save the intersection of each start-face with the imaginary edge
+        #den schnittpunkt von jedem start-face mit der imaginären kante speichern
 
-        #-2 because the last index is the whole graph and one always adds +1 to the index
+        #-2 weil der letzte Index der ganze Graph ist und man immer +1 auf den Index rechnet
         for i in range(len(start_face.nodes)-1):
 
+           
+            
+            #jetzt muss ich hier für jede Kante prüfen ob sie geschnitten wird und den Schnittpunkt speichern
             current_edge = (currentNodeInStartFace, next_node)
             
-            # get the position of the current_edge
+            # hier bekomme ich die Position der current_edge
             pos_current_edge = (
                 faces[len(faces) - 1].nodes[currentNodeInStartFace]['pos'],
                 faces[len(faces) - 1].nodes[next_node]['pos']
@@ -289,8 +300,11 @@ def RouteFaces(s,d,fails,faces):
                 print(" ")
                 return (False, hops, switches, detour_edges)
             
+
+            #prüfen ob die edge geschnitten wird
             intersection = intersection_point(pos_current_edge, pos_imaginary_edge)
 
+            #wenn es zu einem Schnittpunkt kommt, dann muss man gucken ob der derzeitige Schnittpunkt besser ist als der neu gefundene
             if(intersection != None):
 
                 currentNewIntersectionPoint = (intersection[0],intersection[1])
@@ -311,7 +325,365 @@ def RouteFaces(s,d,fails,faces):
                 
             detour_edges.append((currentNode,next_node))
 
+            #wenns nicht geklappt hat muss man die nächsten nodes nehmen
+            #dabei schaltet man einen Knoten in jeder Position weiter
             old_Node = currentNodeInStartFace
+
+            currentNodeInStartFace = next_node
+            hops= hops+1
+
+            #da es nur 2 Nachbarn in jedem Face in einem Knoten gibt und ich nicht weiß
+            #nach welchem parameter networkx die nachbarn ausgibt
+            if list(start_face.neighbors(currentNodeInStartFace))[0] != old_Node:
+                next_node = list(start_face.neighbors(currentNodeInStartFace))[0]
+            else:
+                next_node = list(start_face.neighbors(currentNodeInStartFace))[1]
+
+        indexJ = indexJ + 1
+        switches = switches +1#G = G.copy()
+
+    #nx.draw(G, pos, with_labels=True, node_size=700, node_color="green", font_size=8)
+    #plt.show()
+
+
+    print(" ")
+    print("Routing via second Faces started")
+    currentFace = []
+
+    #jetzt müssen die faces rausgeworfen werden, die keinen Schnittpunkt haben
+    update_intersection_points_start_faces = []
+
+    for face_intersection in intersection_points_start_faces:
+        if(face_intersection[0] != -99999999999):
+            update_intersection_points_start_faces.append(face_intersection)
+        
+    best_intersection = None
+
+    min_distance = float('inf')
+
+    # hier wird der beste schnittpunkt ermittelt
+    for intersection in update_intersection_points_start_faces:
+
+        intersection_pos = (intersection[0], intersection[1])
+
+        distance = euclidean_distance(intersection_pos, currentImaginaryPoint)
+
+        if distance < min_distance:
+
+            min_distance = distance
+
+            best_intersection = intersection
+            
+            
+    #wenn das Startface keinen Schnittpunkt hat dann wird auf dem outerFace analog geroutet
+    if(len(update_intersection_points_start_faces) == 0):
+        
+        
+        #da die Bestimmung des OuterFaces nicht so leicht ist müssen alle Faces durchlaufen werden und geprüft,
+        #ob man direkt die destination erreicht
+        
+        updateFaces = faces[:-1]
+        print("Special Case 1: Trying to route on the outer face")
+        face_pool = [face for face in updateFaces if currentNode in face]
+        
+        if currentFace in face_pool:  
+               
+            face_pool.remove(currentFace)
+        
+        #jedes Face, in dem dann die Source drin ist könnte das outerFace sein
+        
+        for face in face_pool:
+
+            currentFace = face
+            
+            lastNode = currentNode
+
+            currentSource = currentNode
+            
+            nextNode = neighbors = list(currentFace.neighbors(currentNode))[0]
+
+            detour_edges1 = []
+            hops1 = 0
+         
+            #hier findet dann das durchlaufen eines Faces statt
+            while(nextNode != currentSource):
+            
+                # Finde die Nachbarn des aktuellen Knotens im aktuellen Face
+                neighbors = list(currentFace.neighbors(currentNode))
+
+                # Überprüfe, welcher Nachbar der nächste ist
+                if neighbors[0] == lastNode:
+                    
+                    nextNode = neighbors[1]
+                    
+                else:
+                    nextNode = neighbors[0]
+                
+                detour_edges1.append((currentNode,next_node))
+                hops1 = hops +1
+                lastNode = currentNode
+                currentNode = nextNode    
+                
+                if(nextNode == d):
+                    for edge in detour_edges1:
+                        detour_edges.append(edge)
+    
+                    hops = hops + hops1
+                    print("Routing successful via OuterFace")
+                    return (False, hops, switches, detour_edges)
+                
+        print("Routing failed via Faces, No Intersection with Start Face")
+        return (True, hops, switches, detour_edges)
+        
+        
+
+            
+
+    #jetzt muss das Face gefunden werden, welches beide knoten enthält
+    #for face in faces:
+        
+    #    print(list(face))
+        
+    for i in range(len(faces)-2):
+        
+        #print("i :", i)
+        
+        if(faces[i].has_node(best_intersection[2]) and faces[i].has_node(best_intersection[3])):
+
+            currentFace = faces[i]
+
+    #das currentFace bis zum Schnittpunkt durchlaufen
+    
+    currentNode = s
+    
+    lastNode = s
+    
+    nextNode = s
+
+    
+    #schleife um das jetzige face bis zum besten schnittpunkt durchzugehen
+    while currentNode != best_intersection[2]:
+        
+        # Finde die Nachbarn des aktuellen Knotens im aktuellen Face
+        neighbors = list(currentFace.neighbors(currentNode))
+
+        # Überprüfe, welcher Nachbar der nächste ist
+        if neighbors[0] == lastNode:
+            
+            nextNode = neighbors[1]
+            
+        else:
+            nextNode = neighbors[0]
+
+        # Aktualisiere die Knoten für die nächste Iteration
+        detour_edges.append((currentNode,next_node))
+        hops = hops +1
+        lastNode = currentNode
+        currentNode = nextNode    
+
+
+    #jetzt muss ich currentFace auf das nächste Face setzen
+    #als erstes hab ich versucht nach der Regel zu gehen: "jede Kante ist in genau 2 Faces drin"
+    #das stimmt leider nicht, da die äußeren Kanten in nur 1 face sind
+    #daher nehme ich jetzt einfach ein anderes Face mit CurrentNode drin 
+    
+    updateFaces = faces[:-1]
+
+    face_pool = [face for face in updateFaces if currentNode in face]
+    
+    if currentFace in face_pool:     
+        face_pool.remove(currentFace)
+    
+    #Sonderfall, bei dem die geschnittene Kante vom Startface nicht in 2 verschiedenen Faces liegt
+    #diesen Fall hier könnte man so ausweiten, dass der nächst-beste Schnittpunkt oder Punkt im Face gefunden wird, der auch 
+    #ein weiteres Face besitzt von dem man aus weiter Routen könnte
+    else:
+        
+        print("Sonderfall 2: Versuche den besten Punkt in den StartFaces zu finden")
+        skipSonderfall = True
+        
+        #hier müsste man die StartFaces nochmal durchgehen und den besten Punkt finden zur Destination,
+        #der auch ein weiteres Face besitzt
+        
+        #(coordX,coordY,nodeID)
+        closest_point = (-999,-999,-999)
+        #um nachher durch das beste Face zu routen
+        best_face = []
+        
+        coordXd , coordYd = faces[len(faces) - 1].nodes[d]['pos']
+        destination_point = (coordXd,coordYd,d)
+        
+        faces_without_start_faces = set(faces[:-1]) - set(possible_start_faces)
+        
+        #jedes Start-Face durchgehen
+        for face in possible_start_faces:
+            
+            #jeden Knoten im jeweiligen StartFace durchgehen
+            for nodeI in face:
+                
+                #test
+                
+                #prüfen ob der current_node besser ist als der closest_point
+                current_node = nodeI
+                
+                coordXcurrent, coordYcurrent = faces[len(faces) - 1].nodes[current_node]['pos']
+                current_node_point = (coordXcurrent,coordYcurrent,current_node)
+                
+                if(closest_point != closer_point(current_node_point,closest_point,destination_point)):
+                    
+                    #der jetzige Punkt ist näher an der Destination dran
+                    
+                    #jetzt muss geprüft werden ob der jetzige Punkt auch in einem anderen Face drin ist,
+                    #welches nicht zu den StartFaces gehört
+                    
+                    for face_without_start in faces_without_start_faces:
+                        
+                        #wenn der jetzige beste punkt in einem anderen Face ist, von dem man das Routing aus
+                        #fortsetzen kann dann geht man in dieses Face rein
+                        if(current_node in face_without_start.nodes):
+                            
+                            closest_point = current_node_point
+                            best_face = face_without_start
+        
+        if(best_face == (-999,-999,-999)):     
+            print("Routing failed via Faces, starting Face Intersection has no opposite Interface and no Point was found with an opposite Face")
+            print('------------------------------------------------------')
+            return (True, hops, switches, detour_edges)
+        
+        else: 
+            currentFace = best_face
+            currentNode = list(best_face.nodes)[0]
+    
+    #in dem Fall hätte man regulär den Schnittpunkt gefunden
+    if(not skipSonderfall):            
+        currentFace = face_pool[0]
+        currentNode = list(currentFace.nodes)[0]
+
+    scouting = True
+    lastWalk = False
+
+    intersection_structure = create_intersection_structure(len(list(currentFace.nodes())))
+    best_intersection = (-999,-999,-999,-999)
+    scoutSource = currentNode
+    lastScoutNode = currentNode
+    nextNodeScout = list(currentFace.neighbors(currentNode))[0]
+
+    intersection_index = 0
+    
+    faceSwitchCounter = 1
+
+    #danach kommt die schleife über die nächsten faces
+    while(currentNode != d):
+        
+        #als erstes muss gescoutet werden
+        #dabei läuft man das ganze currentface entlang und speichert sich die schnittpunkte
+        if(scouting==True):
+            
+            #als  erstes müssen die nodes weitergeschaltet werden
+
+            neighbors_next_node_scout = list(currentFace.neighbors(currentNode))
+            
+            if(neighbors_next_node_scout[0] == lastScoutNode):
+
+                currentNode = nextNodeScout
+
+                nextNodeScout = neighbors_next_node_scout[1]
+
+            else: 
+                
+                currentNode = nextNodeScout
+
+                nextNodeScout = neighbors_next_node_scout[1]
+
+            detour_edges.append((currentNode,nextNodeScout))
+            
+            hops = hops +1
+            
+            #das scouting ist beendet und wir haben die Schnittpunkte alle gespeichert
+            if(nextNodeScout == scoutSource):
+
+                scouting = False
+                lastWalk = True
+
+
+            #dann muss die intersection bestimmt werden
+            pos_current_edge = (
+                faces[len(faces) - 1].nodes[currentNode]['pos'],
+                faces[len(faces) - 1].nodes[nextNodeScout]['pos']
+            )
+
+            #prüfen ob die edge geschnitten wird
+            intersection = intersection_point(pos_current_edge, pos_imaginary_edge)
+
+            #wenn es zu einem Schnittpunkt kommt, dann muss man gucken ob der derzeitige Schnittpunkt besser ist als der neu gefundene
+            if(intersection != None):
+
+                currentNewIntersectionPoint = (intersection[0],intersection[1])
+
+                currentIntersectionPoint = (best_intersection[0],best_intersection[1])
+
+                currentImaginaryPoint = (faces[len(faces) - 1].nodes[d]['pos'][0], faces[len(faces) - 1].nodes[d]['pos'][1])
+
+                #hier wird die jetzige Intersection mit der derzeut besten Intersection verglichen
+                new_intersection = closer_point(currentNewIntersectionPoint, currentIntersectionPoint ,currentImaginaryPoint)
+
+                #wenn die neu gefundene Intersection besser ist als die alte
+                if(new_intersection == intersection):
+                    
+                    best_intersection = (intersection[0],intersection[1],currentNode,nextNodeScout)
+
+
+        #dann das face bis zum schnittpunkt durchlaufen und currentface umsetzen
+        if(lastWalk == True):
+            
+            #der letzte Lauf durch das Face ist fertig und es fängt ein neues face an
+
+            if(currentNode == best_intersection[3]):
+                lastWalk = False
+                scouting = True
+
+                #das nächste face wird mit der Methode bestimmt die oben auch verwendet wurde
+                #es wird das erste face genommen, welches einen Knoten der intersection enthält
+
+                updateFaces = faces[:-1]
+
+                face_pool = [face for face in updateFaces if currentNode in face]
+
+                currentFace = face_pool[0]
+
+                switches = switches + 1
+
+                faceSwitchCounter = faceSwitchCounter + 1
+
+            #der letzte Lauf durch das Face ist NOCH NICHT fertig und es geht weiter
+            else: 
+                neighbors_next_node_scout = list(currentFace.neighbors(currentNode))
+            
+                if(neighbors_next_node_scout[0] == lastScoutNode):
+
+                    currentNode = nextNodeScout
+
+                    nextNodeScout = neighbors_next_node_scout[1]
+
+                else: 
+                    
+                    currentNode = nextNodeScout
+
+                    nextNodeScout = neighbors_next_node_scout[1]
+
+                detour_edges.append((currentNode,nextNodeScout))
+                
+                hops = hops +1
+
+        break
+    
+
+    #hier würde man rauskommen, wenn die currentNode == d wird
+    #das könnte passieren, wenn man beim scouten des Faces auf die Destination stößt
+    print("Routing success via Faces")
+    print('------------------------------------------------------')
+    print(" ")
+    return (False, hops, switches, detour_edges)
 
 
 
@@ -599,6 +971,14 @@ def RouteOneTree (s,d,fails,paths):
                     detour_edges.append( (last_node,currentNode) )
 
                     last_node = currentNode #man geht den edp so weit hoch bis man an der source ist
+                    
+                    printIndex = edpIndex-1
+                    print("Edp : ", edp)
+                    print("EdpIndex-1 : ", printIndex)
+                    print("edp[edpIndex-1] : ", edp[edpIndex-1])
+                    print(" ")
+                    
+                    
                     currentNode = edp[edpIndex-1] #man kann auch hier direkt den edp index verwenden da man genau 1 eingehende kante hat
                     edpIndex = edpIndex-1
                     hops += 1

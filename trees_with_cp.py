@@ -168,9 +168,6 @@ def one_tree_with_random_checkpoint(source, destination, graph, longest_edp, rev
         
         faces = find_faces(P,planar_pos )
         
-        
-        print("Faces in OneTree Aglorithm : ", faces)
-        
         return faces
 
 
@@ -250,17 +247,6 @@ def find_faces(G, pos):
         graph_last.nodes[node]['pos'] = pos[node]
         
     faces.append(graph_last)
-    
-    
-    
-    #print("Faces : ")
-    #for face in faces[:-1]:
-    #    print(list(face))
-        
-    #nx.draw(G, pos, with_labels=True, node_size=1200, node_color="green", font_size=9)
-    
-    #plt.show()
-    print("Faces in END of find_faces : ", faces)
     
     return faces
 

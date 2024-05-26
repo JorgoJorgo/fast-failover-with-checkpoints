@@ -8,6 +8,7 @@ import random
 import time
 import glob
 from objective_function_experiments import *
+from trees import one_tree_pre
 from trees_with_cp import one_tree_with_random_checkpoint_pre
 from routing import RouteOneTree
 DEBUG = True
@@ -32,8 +33,10 @@ DEBUG = True
 
 
 #Hier erfolgt die Ausführung von OneTree
-algos = {#'One Tree': [one_tree_pre, RouteOneTree],
-         'One Tree Checkpoint':[one_tree_with_random_checkpoint_pre,RouteWithOneCheckpointOneTree]}
+algos = {
+         #'One Tree': [one_tree_pre, RouteOneTree],
+         'One Tree Checkpoint':[one_tree_with_random_checkpoint_pre,RouteWithOneCheckpointOneTree]
+         }
 
 # run one experiment with graph g
 # out denotes file handle to write results to
