@@ -34,8 +34,8 @@ DEBUG = True
 
 #Hier erfolgt die Ausführung von OneTree
 algos = {
-         'One Tree': [one_tree_pre, RouteOneTree],
-         #'One Tree Checkpoint':[one_tree_with_random_checkpoint_pre,RouteWithOneCheckpointOneTree]
+         #'One Tree': [one_tree_pre, RouteOneTree],
+         'One Tree Checkpoint':[one_tree_with_random_checkpoint_pre,RouteWithOneCheckpointOneTree]
          }
 
 # run one experiment with graph g
@@ -159,7 +159,7 @@ def shuffle_and_run(g, out, seed, rep, x):
 # out denotes file handle to write results to
 # seed is used for pseudorandom number generation in this run
 # rep denotes the number of repetitions in the secondary for loop
-def run_regular(out=None, seed=0, rep=5):
+def run_regular(out=None, seed=6, rep=5):
     ss = min(int(n / 2), samplesize)
     fn = min(int(n * k / 4), f_num)
     set_parameters([n, rep, k, ss, fn, seed, name + "regular-"])

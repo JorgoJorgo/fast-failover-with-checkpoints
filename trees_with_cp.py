@@ -56,24 +56,15 @@ def one_tree_with_random_checkpoint_pre(graph):
                 
                 edps_cp_to_d = all_edps(cp, destination, graph)
                 
-                #print("(CP PRE, MIDDLE 1) EDPS CP -> S for : (", source ,",", cp ,"," , destination , ") : ", edps_cp_to_s)
-                
                 print("(CP PRE, MIDDLE 1) EDPS CP -> D for : (", source ,",", cp ,"," , destination , ") : ", edps_cp_to_d)
                 
                 print(" ")
                 
                 edps_cp_to_s.sort(key=len)
                 
-                
-
-                #print("EDPs to source :", edps_cp_to_s)
-                
                 edps_cp_to_d.sort(key=len)
                 
-                #print("EDPs to destination :", edps_cp_to_d)
-                
                 print(" ")
-                #print("(CP PRE, MIDDLE 2) EDPS CP -> S for : (", source ,",", cp ,"," , destination , ") : ", edps_cp_to_s)
                 
                 print("(CP PRE, MIDDLE 2) EDPS CP -> D for : (", source ,",", cp ,"," , destination , ") : ", edps_cp_to_d)
                             
@@ -85,7 +76,6 @@ def one_tree_with_random_checkpoint_pre(graph):
                 tree_cp_to_d = one_tree_with_random_checkpoint(cp,destination,graph,edps_cp_to_d[len(edps_cp_to_d)-1], False).copy()
                 
                 print(" ")
-                #print("(CP PRE, MIDDLE 3) EDPS CP -> S for : (", source ,",", cp ,"," , destination , ") : ", edps_cp_to_s)
                 
                 print("(CP PRE, MIDDLE 3) EDPS CP -> D for : (", source ,",", cp ,"," , destination , ") : ", edps_cp_to_d)
 
@@ -103,7 +93,6 @@ def one_tree_with_random_checkpoint_pre(graph):
                                             }
                 
                 print(" ")
-                #print("(CP PRE, MIDDLE 4) EDPS CP -> S for : (", source ,",", cp ,"," , destination , ") : ", paths[source][destination]['edps_cp_to_s'])
                 
                 print("(CP PRE, MIDDLE 4) EDPS CP -> D for : (", source ,",", cp ,"," , destination , ") : ", paths[source][destination]['edps_cp_to_d'])
                 
