@@ -44,6 +44,7 @@ def RouteWithOneCheckpointOneTree(s,d,fails,paths):
     
     print("Routing with a checkpoint started for : ", s , " -> " , d) 
     
+    
     detour_edges = []
     hops = 0
     switches = 0
@@ -84,6 +85,11 @@ def RouteWithOneCheckpointOneTree(s,d,fails,paths):
     #                               'edps': edps
     #                              }
 
+    print(" ")
+    print("CHECKPOINTTREE ROUTING BEFORE CONVERSION")
+    print("CP : ", cp , " D : ", d)
+    print("EDPS CP to D : ", edps_cp_to_d)
+    print(" ")
     
     # Create a new variable for the converted paths
     converted_paths = {}
@@ -105,14 +111,24 @@ def RouteWithOneCheckpointOneTree(s,d,fails,paths):
             #print("Tree : ", converted_paths[source][destination]['tree'])
             #print("Edps : ", converted_paths[source][destination]['edps'])
 
-            
+    print(" ")
+    print("CHECKPOINTTREE ROUTING AFTER CONVERSION")
+    
+    # for keys,values in converted_paths.items():
+    #     print(keys)
+    #     print(values)
+        
+    print("EDPS CP to D : ", converted_paths[cp][d]['tree'])
+    print(" ")        
     
     #input(" Before tree Routing ")
-    
+    print("***")
+    print("Source : ", s)
+    print("Checkpoint : ", cp)
+    print("Destination : ", d)
+    print("***")
     #after that the routing continues from CP to D using the tree-routing
-    routing_failure_tree, hops_tree, switches_tree, detour_edges_tree = RouteOneTree(s,d,fails,converted_paths)
-    
-    #print( "RouteOneTree Return : " ,RouteOneTree(s,d,fails,converted_paths))
+    routing_failure_tree, hops_tree, switches_tree, detour_edges_tree = RouteOneTree(cp,d,fails,converted_paths)
     
     if(routing_failure_tree):
         print("Routing failed via Tree from CP to D ")
@@ -973,6 +989,9 @@ def RouteOneTree (s,d,fails,paths):
                     last_node = currentNode #man geht den edp so weit hoch bis man an der source ist
                     
                     printIndex = edpIndex-1
+                    
+                    
+                    print("Source : ", s , " Destination : ", d)
                     print("Edp : ", edp)
                     print("EdpIndex-1 : ", printIndex)
                     print("edp[edpIndex-1] : ", edp[edpIndex-1])

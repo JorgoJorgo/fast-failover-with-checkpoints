@@ -46,24 +46,24 @@ def one_tree_with_random_checkpoint_pre(graph):
 
                 #then select the middle node of the longest_edp
                 
-                print("Longest EDP : " , longest_edp)
+                #print("Longest EDP : " , longest_edp)
                 
                 cp = longest_edp[ int(len(longest_edp)/2)]
-                
-                print("Source :", source)
-                
-                print("Checkpoint :", cp)
-                
-                print("Destination :", destination)
-                
-                
                 
                 #then get the edps + longest_edps_cp_s and the longest_edps_cp_d
                 
                 edps_cp_to_s = all_edps(cp, source, graph)
                 
+                
+                
                 edps_cp_to_d = all_edps(cp, destination, graph)
                 
+                
+                print(" ")
+                print("CHECKPOINTTREE PRE")
+                print("CP : ", cp , " D : ", destination)
+                print("EDPS CP to D : ", edps_cp_to_d)
+                print(" ")
                 edps_cp_to_s.sort(key=len)
                 
                 #print("EDPs to source :", edps_cp_to_s)
@@ -166,7 +166,7 @@ def one_tree_with_random_checkpoint(source, destination, graph, longest_edp, rev
         # Generate planar layout from the planar embedding
         planar_pos = nx.planar_layout(P)
         
-        faces = find_faces(P,planar_pos )
+        faces = find_faces(P,planar_pos)
         
         return faces
 
@@ -178,7 +178,9 @@ def one_tree_with_random_checkpoint(source, destination, graph, longest_edp, rev
         connect_leaf_to_destination(tree, source, destination)
     
         tree.add_edge(longest_edp[len(longest_edp)-2],destination)
-    
+        
+        #plot_tree_with_highlighted_nodes(tree,source,destination,[])
+        
         #add 'rank' property to the added destinaton, -1 for highest priority in routing
         tree.nodes[destination]["rank"] = -1
         

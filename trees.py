@@ -1529,6 +1529,13 @@ def one_tree_pre(graph):
                     paths[source][destination] = {'tree': tree, 'edps': edps}
                 
                 
+                print("ONETREE PRE")
+                print(" ")
+                print("CP : ", source , " D : ", destination)
+                print("EDPS CP to D : ", edps)
+                print(" ")
+                edps.sort(key=len)
+                
     return paths
 
 #hilfsfunktion damit man die weglänge von jedem node zur distance hat , das braucht man um die reihenfolge festzulegen die man bei den verzweigungen nimmt 
