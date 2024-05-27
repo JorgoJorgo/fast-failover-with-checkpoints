@@ -44,6 +44,26 @@ def RouteWithOneCheckpointOneTree(s,d,fails,paths):
     
     print("Routing with a checkpoint started for : ", s , " -> " , d) 
     
+    # print(" ")
+    # print(" START OF CP ROUTING ")
+    # converted_paths = {}
+    # for item1 in paths:
+    #     print(" ")
+    #     print("**************")
+
+    #     for item2 in paths[item1]:
+            
+    #         if item1 not in converted_paths:
+    #             converted_paths[item1] = {}
+              
+    #         converted_paths[item1][item2]= {
+    #             'tree': paths[item1][item2]['tree_cp_to_d'],
+    #             'edps': paths[item1][item2]['edps_cp_to_d']
+    #         }
+            
+    #         print("(CP ROUTING START) EDPS CP -> D for : (", item1 ,",", paths[item1][item2]['cp'] ,"," , item2 , ") : ", converted_paths[item1][item2]['edps'])
+            
+    #input(" ")
     
     detour_edges = []
     hops = 0
@@ -85,48 +105,31 @@ def RouteWithOneCheckpointOneTree(s,d,fails,paths):
     #                               'edps': edps
     #                              }
 
-    print(" ")
-    print("CHECKPOINTTREE ROUTING BEFORE CONVERSION")
-    print("CP : ", cp , " D : ", d)
-    print("EDPS CP to D : ", edps_cp_to_d)
-    print(" ")
     
     # Create a new variable for the converted paths
     converted_paths = {}
-
-    # Iterate over the paths in the old format
-    for source, destinations in paths.items():
-        # Create an entry for the current source in the new format
-        converted_paths[source] = {}
-        
-        # Iterate over the destinations in the old format
-        for destination, data in destinations.items():
-            
-            # Create an entry for the current destination in the new format
-            converted_paths[source][destination] = {
-                'tree': data['tree_cp_to_d'], # Insert the new 'tree' here
-                'edps': data['edps_cp_to_d']  # Insert the new 'edps' here
-            }
-            #print("Converted Paths : " , converted_paths[source][destination])
-            #print("Tree : ", converted_paths[source][destination]['tree'])
-            #print("Edps : ", converted_paths[source][destination]['edps'])
-
+    
+    
     print(" ")
-    print("CHECKPOINTTREE ROUTING AFTER CONVERSION")
+    print(" IN CP ROUTING ")
+
     
-    # for keys,values in converted_paths.items():
-    #     print(keys)
-    #     print(values)
-        
-    print("EDPS CP to D : ", converted_paths[cp][d]['tree'])
-    print(" ")        
-    
-    #input(" Before tree Routing ")
-    print("***")
-    print("Source : ", s)
-    print("Checkpoint : ", cp)
-    print("Destination : ", d)
-    print("***")
+    #ich glaube das problem ist hier, dass ich beim Konvertieren den in converted_paths[s][d] den tree und die edps von cp -> d speichere
+    for item1 in paths:
+        print(" ")
+        print("**************")
+
+        for item2 in paths[item1]:
+            
+            if item1 not in converted_paths:
+                converted_paths[item1] = {}
+              
+            converted_paths[item1][paths[item1][item2]['cp']]= {
+                'tree': paths[item1][item2]['tree_cp_to_d'],
+                'edps': paths[item1][item2]['edps_cp_to_d']
+            }
+            print("EDPS for : (", item1 ,",", cp ,"," , item2 , ") : ", converted_paths[item1][paths[item1][item2]['cp']]['edps'])
+                 
     #after that the routing continues from CP to D using the tree-routing
     routing_failure_tree, hops_tree, switches_tree, detour_edges_tree = RouteOneTree(cp,d,fails,converted_paths)
     
@@ -911,6 +914,14 @@ def RouteMultipleTrees(s,d,fails,paths):
     #endif
 
 ###########################################################################################################################################################
+def print_paths(paths):
+    for source, destinations in paths.items():
+        print(f"Source: {source}")
+        for destination, values in destinations.items():
+            print(f"  Destination: {destination}")
+            for key, value in values.items():
+                print(f"    {key}: {value}")
+        print()  # Leerzeile für bessere Lesbarkeit
 ###########################################################################################################################################################
 
 
@@ -919,6 +930,13 @@ def RouteMultipleTrees(s,d,fails,paths):
 #dies geschieht indem man nach weiterleitung eines pakets an jedem knoten den nächst besten rang bestimmt
 def RouteOneTree (s,d,fails,paths):
     if s != d :
+        
+        
+        print("(ROUTE ONE TREE START) (S , D) : (", s, "," , d , ")" )
+        print("(ROUTE ONE TREE START) paths : " )
+        print_paths(paths)
+        print("(ROUTE ONE TREE START) (S , D) : (", s, "," , d , ")" )
+        print("(ROUTE ONE TREE START) paths[s][d] : ", paths[s][d])
         currentNode = -1
         edpIndex = 0
         detour_edges = []

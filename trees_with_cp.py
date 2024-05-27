@@ -54,33 +54,40 @@ def one_tree_with_random_checkpoint_pre(graph):
                 
                 edps_cp_to_s = all_edps(cp, source, graph)
                 
-                
-                
                 edps_cp_to_d = all_edps(cp, destination, graph)
                 
+                #print("(CP PRE, MIDDLE 1) EDPS CP -> S for : (", source ,",", cp ,"," , destination , ") : ", edps_cp_to_s)
+                
+                print("(CP PRE, MIDDLE 1) EDPS CP -> D for : (", source ,",", cp ,"," , destination , ") : ", edps_cp_to_d)
                 
                 print(" ")
-                print("CHECKPOINTTREE PRE")
-                print("CP : ", cp , " D : ", destination)
-                print("EDPS CP to D : ", edps_cp_to_d)
-                print(" ")
+                
                 edps_cp_to_s.sort(key=len)
                 
+                
+
                 #print("EDPs to source :", edps_cp_to_s)
                 
                 edps_cp_to_d.sort(key=len)
                 
                 #print("EDPs to destination :", edps_cp_to_d)
                 
+                print(" ")
+                #print("(CP PRE, MIDDLE 2) EDPS CP -> S for : (", source ,",", cp ,"," , destination , ") : ", edps_cp_to_s)
                 
+                print("(CP PRE, MIDDLE 2) EDPS CP -> D for : (", source ,",", cp ,"," , destination , ") : ", edps_cp_to_d)
+                            
                 
                 #and build trees out of the longest_edps_cp_s and the longest_edps_cp_d
                 
-                faces_cp_to_s = one_tree_with_random_checkpoint(cp,source,graph,edps_cp_to_s[len(edps_cp_to_s)-1], True)
+                faces_cp_to_s = one_tree_with_random_checkpoint(cp,source,graph,edps_cp_to_s[len(edps_cp_to_s)-1], True).copy()
                 
-                tree_cp_to_d = one_tree_with_random_checkpoint(cp,destination,graph,edps_cp_to_d[len(edps_cp_to_d)-1], False)
+                tree_cp_to_d = one_tree_with_random_checkpoint(cp,destination,graph,edps_cp_to_d[len(edps_cp_to_d)-1], False).copy()
                 
+                print(" ")
+                #print("(CP PRE, MIDDLE 3) EDPS CP -> S for : (", source ,",", cp ,"," , destination , ") : ", edps_cp_to_s)
                 
+                print("(CP PRE, MIDDLE 3) EDPS CP -> D for : (", source ,",", cp ,"," , destination , ") : ", edps_cp_to_d)
 
                 #bc the tree cp->s got build reverse direction the edges need to be reversed again
     
@@ -94,8 +101,28 @@ def one_tree_with_random_checkpoint_pre(graph):
                                                 'tree_cp_to_d': tree_cp_to_d, 
                                                 'edps_cp_to_d': edps_cp_to_d,
                                             }
-                    
+                
+                print(" ")
+                #print("(CP PRE, MIDDLE 4) EDPS CP -> S for : (", source ,",", cp ,"," , destination , ") : ", paths[source][destination]['edps_cp_to_s'])
+                
+                print("(CP PRE, MIDDLE 4) EDPS CP -> D for : (", source ,",", cp ,"," , destination , ") : ", paths[source][destination]['edps_cp_to_d'])
+                
+                
+
+                        
+    print(" ")
+    
+    print("END CP PRE ")
+    
+    for item1 in paths:
+    
+        print(" ")
+    
+        print("**************")
+
+        for item2 in paths[item1]:
             
+            print("(CP PRE, END) EDPS for : (", item1 ,",", paths[item1][item2]['cp'] ,"," , item2 , ") : ", paths[item1][item2]['edps_cp_to_d'])            
     
     return paths
 
