@@ -110,7 +110,14 @@ def RouteWithOneCheckpointOneTree(s,d,fails,paths):
     # Create a new variable for the converted paths
     converted_paths = {}
 
-    #the new paths[cp][destination] needs to have the tree (cp -> d) and edps (cp -> d) from the old paths[source][destination] 
+    #the first step of the overall routing (s->cp->d) is done
+    #this first step (face routing s->cp) required a new paths object structure which does not fit into the second step (tree routing c), this structure had more keys since the face routing needed the faces
+    #the object needed in the second step of the routing needs the tree & the edps of the first structure with the indices cp as the source and the destination as the destination
+    
+    #converted_paths[cp][destination]{
+    #           'tree': paths[source][destination]['tree_cp_to_d'],        
+    #           'edps': paths[source][destination]['edps_cp_to_d']
+    #}
     for item1 in paths:
 
         for item2 in paths[item1]:

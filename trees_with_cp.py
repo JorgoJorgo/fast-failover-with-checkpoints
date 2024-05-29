@@ -50,7 +50,7 @@ def one_tree_with_random_checkpoint_pre(graph):
                 
                 cp = longest_edp[ int(len(longest_edp)/2)]
                 
-                print("CP : ", cp)
+                #print("CP : ", cp)
                 #then get the edps + longest_edps_cp_s and the longest_edps_cp_d
                 
                 edps_cp_to_s = all_edps(cp, source, graph)

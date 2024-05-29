@@ -34,7 +34,7 @@ DEBUG = True
 
 #Hier erfolgt die Ausführung von OneTree
 algos = {
-         #'One Tree': [one_tree_pre, RouteOneTree],
+         'One Tree': [one_tree_pre, RouteOneTree],
          'One Tree Checkpoint':[one_tree_with_random_checkpoint_pre,RouteWithOneCheckpointOneTree]
          }
 
