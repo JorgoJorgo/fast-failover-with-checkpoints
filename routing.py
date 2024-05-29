@@ -42,6 +42,7 @@ def set_routing_params(params):
 # the face-routing from s -> cp and after that the tree-routing from cp -> d
 def RouteWithOneCheckpointOneTree(s,d,fails,paths):
     
+    print()
     print("Routing with a checkpoint started for : ", s , " -> " , d) 
     
     # print(" ")
@@ -108,27 +109,23 @@ def RouteWithOneCheckpointOneTree(s,d,fails,paths):
     
     # Create a new variable for the converted paths
     converted_paths = {}
-    
-    
-    print(" ")
-    print(" IN CP ROUTING ")
 
-    
-    #ich glaube das problem ist hier, dass ich beim Konvertieren den in converted_paths[s][d] den tree und die edps von cp -> d speichere
+    #the new paths[cp][destination] needs to have the tree (cp -> d) and edps (cp -> d) from the old paths[source][destination] 
     for item1 in paths:
-        print(" ")
-        print("**************")
 
         for item2 in paths[item1]:
             
-            if item1 not in converted_paths:
-                converted_paths[item1] = {}
-              
-            converted_paths[item1][paths[item1][item2]['cp']]= {
+            checkpoint_of_item = paths[item1][item2]['cp']
+            
+            if checkpoint_of_item not in converted_paths:
+                
+                converted_paths[checkpoint_of_item] = {}
+                
+            converted_paths[checkpoint_of_item] [item2]= {
                 'tree': paths[item1][item2]['tree_cp_to_d'],
                 'edps': paths[item1][item2]['edps_cp_to_d']
             }
-            print("EDPS for : (", item1 ,",", cp ,"," , item2 , ") : ", converted_paths[item1][paths[item1][item2]['cp']]['edps'])
+            
                  
     #after that the routing continues from CP to D using the tree-routing
     routing_failure_tree, hops_tree, switches_tree, detour_edges_tree = RouteOneTree(cp,d,fails,converted_paths)
@@ -929,14 +926,9 @@ def print_paths(paths):
 #routing methode von onetree um zwischen einem source-destination paar zu routen
 #dies geschieht indem man nach weiterleitung eines pakets an jedem knoten den nächst besten rang bestimmt
 def RouteOneTree (s,d,fails,paths):
+    
     if s != d :
         
-        
-        print("(ROUTE ONE TREE START) (S , D) : (", s, "," , d , ")" )
-        print("(ROUTE ONE TREE START) paths : " )
-        print_paths(paths)
-        print("(ROUTE ONE TREE START) (S , D) : (", s, "," , d , ")" )
-        print("(ROUTE ONE TREE START) paths[s][d] : ", paths[s][d])
         currentNode = -1
         edpIndex = 0
         detour_edges = []
