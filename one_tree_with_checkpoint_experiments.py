@@ -220,30 +220,71 @@ def run_custom(out=None, seed=0, rep=5):
         print("Global f_num after run : ", f_num )
         set_parameters(original_params)
         print("Global f_num after reset : ", f_num )
+        
+        
+def run_clustered_failures(out=None, seed=0, rep=5):
+    
+    global f_num 
+    original_params = [n, rep, k, samplesize, f_num, seed, name]
+    graphs = []
+    fails = []
+
+    graph1, fail1 = create_clustered_failures_graph(n,k,f_num)
+
+    graphs.append(graph1)
+    fails.append(fail1) 
+
+    for i in range(0, len(graphs)):
+        f_num = len(fails[i]) # How many failed edges we selected in our create_custom_graph
+        PG = nx.nx_pydot.write_dot(graphs[i] , "./customOneTreeCP/custom_multipletrees_"+ str(i))
+        print("Fails : ", fails[i])
+        random.seed(seed)
+        kk = 5
+        g = graphs[i]
+        g.graph['k'] = kk
+        nn = len(g.nodes())
+        mm = len(g.edges())
+        ss = min(int(nn / 2), samplesize)
+        fn = min(int(mm / 2), f_num)
+        print("Minimum fn: ", fn, "MM/2: ", mm/2 , "f_num :", f_num )
+        fails = fails[i]
+        g.graph['fails'] = fails
+        set_parameters([nn, rep, kk, ss, fn, seed, name + "CUSTOM"])
+        print("Global f_num : ", f_num )
+        shuffle_and_run(g, out, seed, rep, graphs[i])
+        print("Global f_num after run : ", f_num )
+        set_parameters(original_params)
+        print("Global f_num after reset : ", f_num )
 
 # run experiments
 # seed is used for pseudorandom number generation in this run
 # switch determines which experiments are run
-def experiments(switch="all", seed=0, rep=100):
-    if switch in ["regular", "all"]:
-       out = start_file("results/benchmark-regular-onetree-" + str(n) + "-" + str(k))
-       run_regular(out=out, seed=seed, rep=rep)
-       out.close()
-
+def experiments(switch="all", seed=0, rep=3):
+    
+    if switch in ["clustered", "all"]:
+        #hier steht wo die ergebnisse des durchlaufs gespeichert werden : results/benchmark-cusutom-5.txt
+        out = start_file("results/benchmark-clustered-onetreeCP-" + str(k))
+        run_clustered_failures(out=out, seed=seed, rep=rep)
+        out.close()
+        
     if switch in ["custom", "all"]:
         #hier steht wo die ergebnisse des durchlaufs gespeichert werden : results/benchmark-cusutom-5.txt
-        out = start_file("results/benchmark-custom-onetree-" + str(k))
+        out = start_file("results/benchmark-custom-num-multtrees-" + str(k))
         run_custom(out=out, seed=seed, rep=rep)
         out.close()
 
+    if switch in ["regular", "all"]:
+        out = start_file("results/benchmark-regular-onetreeCP-FR" + str(i) + "-" + str(n) + "-" + str(k))
+        run_regular(out=out, seed=seed, rep=rep)
+        out.close()
 
     if switch in ["zoo", "all"]:
-        out = start_file("results/benchmark-zoo-onetree-" + str(k))
+        out = start_file("results/benchmark-zoo-all-multiple-trees-" + str(k))
         run_zoo(out=out, seed=seed, rep=rep)
         out.close()
 
     if switch in ["AS"]:
-        out = start_file("results/benchmark-as_seed_onetree-" + str(seed))
+        out = start_file("results/benchmark-as_seed_-all-multiple-trees-" + str(seed))
         run_AS(out=out, seed=seed, rep=rep)
         out.close()
 
@@ -253,33 +294,36 @@ def experiments(switch="all", seed=0, rep=100):
     print("\nlower is better")
 
 
-
 if __name__ == "__main__":
-    f_num = 15 #number of failed links
-    n = 20 # number of nodes
-    k = 5 #base connectivity
-    samplesize = 5 #number of sources to route a packet to destination
-    rep = 3 #number of experiments
-    switch = 'all' #which experiments to run with same parameters
-    seed = 0  #random seed
-    name = "benchmark-" #result files start with this name
-    short = None #if true only small zoo graphs < 25 nodes are run
-    start = time.time()
-    print(time.asctime(time.localtime(start)))
-    if len(sys.argv) > 1:
-        switch = sys.argv[1]
-    if len(sys.argv) > 2:
-        seed = int(sys.argv[2])
-    if len(sys.argv) > 3:
-        rep = int(sys.argv[3])
-    if len(sys.argv) > 4:
-        n = int(sys.argv[4])
-    if len(sys.argv) > 4:
-        samplesize = int(sys.argv[5])
-    random.seed(seed)
-    set_parameters([n, rep, k, samplesize, f_num, seed, "benchmark-"])
-    experiments(switch=switch, seed=seed, rep=rep)
-    end = time.time()
-    print("time elapsed", end - start)
-    print("start time", time.asctime(time.localtime(start)))
-    print("end time", time.asctime(time.localtime(end)))
+    f_num = 5
+    for i in range(1,13):
+        failure_rate = i
+        #f_num = 26 #number of failed links
+        n = 40 # number of nodes
+        k = 5 #base connectivity
+        samplesize = 5 #number of sources to route a packet to destination
+        rep = 5 #number of experiments
+        switch = 'all' #which experiments to run with same parameters
+        seed = 0  #random seed
+        name = "benchmark-" #result files start with this name
+        short = None #if true only small zoo graphs < 25 nodes are run
+        start = time.time()
+        print(time.asctime(time.localtime(start)))
+        if len(sys.argv) > 1:
+            switch = sys.argv[1]
+        if len(sys.argv) > 2:
+            seed = int(sys.argv[2])
+        if len(sys.argv) > 3:
+            rep = int(sys.argv[3])
+        if len(sys.argv) > 4:
+            n = int(sys.argv[4])
+        if len(sys.argv) > 4:
+            samplesize = int(sys.argv[5])
+        random.seed(seed)
+        set_parameters([n, rep, k, samplesize, f_num, seed, "benchmark-"])
+        experiments(switch=switch, seed=seed, rep=rep)
+        end = time.time()
+        print("time elapsed", end - start)
+        print("start time", time.asctime(time.localtime(start)))
+        print("end time", time.asctime(time.localtime(end)))
+        f_num = f_num + 5

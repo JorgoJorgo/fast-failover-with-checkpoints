@@ -79,8 +79,6 @@ def RouteWithOneCheckpointOneTree(s,d,fails,paths):
     routing_failure_faces = False
     #now the first step of the routing consists of face-routing from S to CP
     
-    #print("RouteFaces Return : ",RouteFaces(s,cp,fails,faces_cp_to_s))
-    
     routing_failure_faces, hops_faces, switches_faces, detour_edges_faces = RouteFaces(s,cp,fails,faces_cp_to_s)
     
     if(routing_failure_faces):

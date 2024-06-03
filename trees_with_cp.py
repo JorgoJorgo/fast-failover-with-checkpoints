@@ -46,20 +46,13 @@ def one_tree_with_random_checkpoint_pre(graph):
 
                 #then select the middle node of the longest_edp
                 
-                #print("Longest EDP : " , longest_edp)
-                
                 cp = longest_edp[ int(len(longest_edp)/2)]
                 
-                #print("CP : ", cp)
                 #then get the edps + longest_edps_cp_s and the longest_edps_cp_d
                 
                 edps_cp_to_s = all_edps(cp, source, graph)
                 
                 edps_cp_to_d = all_edps(cp, destination, graph)
-                
-                #print("(CP PRE, MIDDLE 1) EDPS CP -> D for : (", source ,",", cp ,"," , destination , ") : ", edps_cp_to_d)
-                
-                #print(" ")
                 
                 edps_cp_to_s.sort(key=len)
                 
@@ -76,13 +69,7 @@ def one_tree_with_random_checkpoint_pre(graph):
                 
                 tree_cp_to_d = one_tree_with_random_checkpoint(cp,destination,graph,edps_cp_to_d[len(edps_cp_to_d)-1], False).copy()
                 
-                #print(" ")
-                
-                #print("(CP PRE, MIDDLE 3) EDPS CP -> D for : (", source ,",", cp ,"," , destination , ") : ", edps_cp_to_d)
-
                 #bc the tree cp->s got build reverse direction the edges need to be reversed again
-    
-    
                 #data structure to give the needed information for the routing (edps, trees, checkpoint)
                 
                 paths[source][destination] = {
@@ -92,28 +79,7 @@ def one_tree_with_random_checkpoint_pre(graph):
                                                 'tree_cp_to_d': tree_cp_to_d, 
                                                 'edps_cp_to_d': edps_cp_to_d,
                                             }
-                
-                #print(" ")
-                
-                #print("(CP PRE, MIDDLE 4) EDPS CP -> D for : (", source ,",", cp ,"," , destination , ") : ", paths[source][destination]['edps_cp_to_d'])
-                
-                
-
-                        
-    # print(" ")
-    
-    # print("END CP PRE ")
-    
-    # for item1 in paths:
-    
-    #     print(" ")
-    
-    #     print("**************")
-
-    #     for item2 in paths[item1]:
-            
-    #         print("(CP PRE, END) EDPS for : (", item1 ,",", paths[item1][item2]['cp'] ,"," , item2 , ") : ", paths[item1][item2]['edps_cp_to_d'])            
-    
+                                    
     return paths
 
 
@@ -196,8 +162,6 @@ def one_tree_with_random_checkpoint(source, destination, graph, longest_edp, rev
     
         tree.add_edge(longest_edp[len(longest_edp)-2],destination)
         
-        #plot_tree_with_highlighted_nodes(tree,source,destination,[])
-        
         #add 'rank' property to the added destinaton, -1 for highest priority in routing
         tree.nodes[destination]["rank"] = -1
         
@@ -209,10 +173,6 @@ def one_tree_with_random_checkpoint(source, destination, graph, longest_edp, rev
 
 # Find all the faces of a planar graph
 def find_faces(G, pos):
-    
-    #print(G)
-    
-    #input(" ")
     
     face_nodes = ()
     

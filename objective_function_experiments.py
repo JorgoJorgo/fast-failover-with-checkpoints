@@ -602,6 +602,42 @@ def create_custom_graph():
     
     return g,fails
 
+
+
+import random
+
+def create_clustered_failures_graph(n, k, f_num):
+    g = nx.random_regular_graph(k,  n)
+    fails = []
+
+    # Choose a random node to create clustered failures
+    failed_node = random.choice(list(g.nodes))
+
+    # Find neighbors of the chosen node
+    neighbors = list(g.neighbors(failed_node))
+    
+    # Ensure f_num is not larger than the possible number of connections
+    possible_nodes = set(g.nodes) - {failed_node}
+    if f_num > len(possible_nodes):
+        f_num = len(possible_nodes)
+    
+    if len(neighbors) < f_num:
+        # If there are not enough neighbors, choose random nodes
+        additional_nodes = random.sample(possible_nodes - set(neighbors), f_num - len(neighbors))
+        neighbors.extend(additional_nodes)
+
+    # Choose f_num neighbors (or random nodes) and mark them as faulty edges
+    for neighbor in neighbors[:f_num]:
+        if g.has_edge(failed_node, neighbor):
+            fails.append((failed_node, neighbor))
+        else:
+            # Add the edge to the graph if it doesn't exist, but mark it as faulty
+            g.add_edge(failed_node, neighbor)
+            fails.append((failed_node, neighbor))
+
+    return g, fails
+
+
 # read generated k-regular graphs from file system
 def read_graph(i):
     g = nx.read_edgelist('results/' + name + str(seed) + '_graph_' +
