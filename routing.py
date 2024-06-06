@@ -519,6 +519,8 @@ def find_closest_point(point1, point2, target_point):
 
 def RouteFaces(s,d,fails,faces):
     
+    print("Routing in faces started for : ", s , " -> " , d) 
+    
     detour_edges = []
     
     hops = 0
@@ -531,12 +533,21 @@ def RouteFaces(s,d,fails,faces):
     faces[len(faces)-1].add_edge(s, d)
 
     imaginary_edge = (s,d)
-    pos_imaginary_edge = (
+    print("Faces : ")
+    for face in faces:
+        print(face.nodes())
+    
+    
+    try:
+        pos_imaginary_edge = (
                 faces[len(faces) - 1].nodes[s]['pos'],
                 faces[len(faces) - 1].nodes[d]['pos']
             )
+    except:
+        print("Special case 0  Fail Face Routing")
+        return (True, hops, switches, detour_edges)
     
-    print("Routing in faces started for : ", s , " -> " , d) 
+    
 
 
     currentNode = s

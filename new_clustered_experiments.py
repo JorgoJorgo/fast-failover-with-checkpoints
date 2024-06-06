@@ -135,7 +135,7 @@ def run_AS(out=None, seed=0, rep=5):
 # out denotes file handle to write results to
 # seed is used for pseudorandom number generation in this run
 # rep denotes the number of repetitions in the shuffle for loop
-def run_zoo(out=None, seed=0, rep=5, min_connectivity=1):
+def run_zoo(out=None, seed=0, rep=5, min_connectivity=5):
     original_params = [n, rep, k, samplesize, f_num, seed, name]
     if DEBUG:
         print('n_before, n_after, m_after, connectivity, degree')

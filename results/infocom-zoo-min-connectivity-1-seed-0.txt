@@ -1,2 +1,0 @@
-graph, size, connectivity, algorithm, repetition, failures, stretch, load, hops, success, cc_size,routing_time, precomputation_time
-0, 65, 1, One Tree, 0, 10, 0, 0, 5, 0.900000, 58, 0.000170, 3.585163

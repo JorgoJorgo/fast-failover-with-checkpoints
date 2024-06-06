@@ -43,7 +43,19 @@ def one_tree_with_random_checkpoint_pre(graph):
                 edps.sort(key=len)
                 
                 longest_edp = edps[len(edps)-1]
-
+                
+                #special case if the s,d pair is connected and this is the only edp
+                if(len(longest_edp) == 2):
+                    #print("Special case for : ", source, "-", destination)
+                    paths[source][destination] = {
+                                                'cp': destination,
+                                                'faces_cp_to_s': [], 
+                                                'edps_cp_to_s': [[source,destination]],
+                                                'tree_cp_to_d':[], 
+                                                'edps_cp_to_d': [[source,destination]],
+                                            }
+                    continue
+                
                 #then select the middle node of the longest_edp
                 
                 cp = longest_edp[ int(len(longest_edp)/2)]
