@@ -1,0 +1,9 @@
+graph, size, connectivity, algorithm, repetition, failures, stretch, load, hops, success, cc_size,routing_time, precomputation_time
+0, 65, 1, MaxDAG, 0, 10, 0, 0, 6, 0.800000, 60, 0.000121, 0.120582
+0, 65, 1, Clusters, 0, 10, 125, 65, 131, 0.800000, 60, 0.000133, 0.007957
+0, 65, 1, AugmentationPreferReal, 0, 10, 0, 0, 6, 0.900000, 60, 0.000193, 8.892458
+0, 65, 1, MaxDAG, 1, 10, 0, 0, 7, 0.800000, 60, 0.000117, 0.101016
+0, 65, 1, Clusters, 1, 10, 124, 65, 131, 0.800000, 60, 0.000139, 0.007741
+0, 65, 1, AugmentationPreferReal, 1, 10, 0, 0, 7, 0.900000, 60, 0.000198, 9.330100
+0, 65, 1, MaxDAG, 2, 10, 254, 65, 259, 0.800000, 60, 0.000150, 0.077470
+0, 65, 1, Clusters, 2, 10, 126, 65, 131, 0.800000, 60, 0.000134, 0.008127

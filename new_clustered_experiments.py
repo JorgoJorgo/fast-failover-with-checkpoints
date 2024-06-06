@@ -7,6 +7,8 @@ import random
 import time
 import glob
 from objective_function_experiments import *
+from trees import one_tree_pre
+from trees_with_cp import one_tree_with_random_checkpoint_pre
 DEBUG = False
 
 
@@ -28,19 +30,8 @@ DEBUG = False
 # routing.py
 #
 # For infocom 2021 we compare the following algorithms.
-algos = {#'Greedy': [GreedyArborescenceDecomposition, RouteDetCircNoSpanning],
-         #'KeepForwarding': [KeepForwardingPrecomputation, KeepForwardingRouting],
-         #'Bonsai': [Bonsai, RouteDetCircNoSpanning],
-         #'BonsaiDestinationDegree': [BonsaiDestinationDegree, RouteDetCircSkip],
-         'MaxDAG': [DegreeMaxDAG, RouteDetCircSkip],
-         #'Adhoc': [AdHocExtraLinks, RouteDetCircSkip],
-         #'MaxAdhoc': [MaximizeAdhocExtraLinks, RouteDetCircSkip],
-         'Clusters': [FindClusters, RouteDetCircSkip],
-         #'MaxClusters': [MaximizeFindClusters, RouteDetCircSkip],
-         #'Augmentation': [AugmentationDecomposition, RouteDetCircSkip],
-         #'MaxAugmentation': [MaximizeAugmentation, RouteDetCircSkip],
-         'AugmentationPreferReal': [AugmentationDecompositionPreferReal, RouteDetCircSkip],
-         #'MaxAugmentationPreferReal': [MaximizeAugmentationPreferReal, RouteDetCircSkip],
+algos = {'One Tree': [one_tree_pre, RouteOneTree],
+         'One Tree Checkpoint':[one_tree_with_random_checkpoint_pre,RouteWithOneCheckpointOneTree],
          }
 
 # run one experiment with graph g

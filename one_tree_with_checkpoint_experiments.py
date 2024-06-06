@@ -315,6 +315,7 @@ if __name__ == "__main__":
         #f_num = 26 #number of failed links
         n = 50 # number of nodes
         k = 5 #base connectivity
+        print("F_num : ", f_num)
         samplesize = 5 #number of sources to route a packet to destination
         rep = 5 #number of experiments
         switch = 'all' #which experiments to run with same parameters
