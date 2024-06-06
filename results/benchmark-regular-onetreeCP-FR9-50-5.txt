@@ -1,0 +1,17 @@
+#graph, size, connectivity, algorithm, index, stretch, load, hops, success, routing computation time, pre-computation time in seconds
+#Thu Jun  6 16:24:02 2024
+regular, 50, 5, One Tree, 0, 3, 1, 6, 1.000000, 0.000274, 2.920164
+regular, 50, 5, One Tree Checkpoint, 0, 4, 2, 7, 0.800000, 0.001414, 11.194595
+regular, 50, 5, SquareOne, 0, 2, 25, 5, 0.800000, 0.000318, 0.438913
+regular, 50, 5, One Tree, 1, 8, 1, 12, 1.000000, 0.000276, 2.962691
+regular, 50, 5, One Tree Checkpoint, 1, 10, 2, 13, 0.400000, 0.001517, 11.236059
+regular, 50, 5, SquareOne, 1, 8, 2, 12, 1.000000, 0.000282, 0.427795
+regular, 50, 5, One Tree, 2, 7, 1, 11, 0.800000, 0.000299, 2.883231
+regular, 50, 5, One Tree Checkpoint, 2, 5, 1, 7, 0.800000, 0.001422, 10.802508
+regular, 50, 5, SquareOne, 2, 6, 15, 10, 0.800000, 0.000307, 0.428897
+regular, 50, 5, One Tree, 3, 14, 2, 19, 0.800000, 0.000320, 2.918250
+regular, 50, 5, One Tree Checkpoint, 3, 5, 2, 8, 0.800000, 0.001402, 10.769116
+regular, 50, 5, SquareOne, 3, 10, 37, 14, 0.600000, 0.000340, 0.427097
+regular, 50, 5, One Tree, 4, 8, 2, 12, 0.800000, 0.000287, 3.056532
+regular, 50, 5, One Tree Checkpoint, 4, 11, 2, 13, 0.600000, 0.001446, 10.836390
+regular, 50, 5, SquareOne, 4, 8, 25, 12, 0.800000, 0.008496, 0.432707

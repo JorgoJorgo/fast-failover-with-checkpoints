@@ -10,7 +10,7 @@ import glob
 from objective_function_experiments import *
 from trees import one_tree_pre
 from trees_with_cp import one_tree_with_random_checkpoint_pre
-from routing import RouteOneTree
+from routing import RouteOneTree, RouteWithOneCheckpointOneTree
 DEBUG = True
 
 # Data structure containing the algorithms under
@@ -36,7 +36,7 @@ DEBUG = True
 algos = {
          'One Tree': [one_tree_pre, RouteOneTree],
          'One Tree Checkpoint':[one_tree_with_random_checkpoint_pre,RouteWithOneCheckpointOneTree],
-         #'SquareOne':[PrepareSQ1,RouteSQ1]
+         'SquareOne':[PrepareSQ1,RouteSQ1]
          }
 
 # run one experiment with graph g
@@ -312,7 +312,6 @@ if __name__ == "__main__":
     f_num = 5
     for i in range(1,13):
         failure_rate = i
-        #f_num = 26 #number of failed links
         n = 50 # number of nodes
         k = 5 #base connectivity
         print("F_num : ", f_num)
