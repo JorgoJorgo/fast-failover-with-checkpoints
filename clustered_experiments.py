@@ -9,10 +9,9 @@ import time
 import glob
 from arborescences import reset_arb_attribute
 from objective_function_experiments import *
-from routing_clustered import RouteOneTreeCLUSTERED, RouteWithOneCheckpointOneTreeCLUSTERED
 from trees import one_tree_pre
 from trees_with_cp import one_tree_with_random_checkpoint_pre
-from routing import RouteOneTree, RouteWithOneCheckpointOneTree, SimulateGraph, SimulateGraphClustered, Statistic
+from routing import RouteOneTree, RouteOneTreeCLUSTERED, RouteWithOneCheckpointOneTree, RouteWithOneCheckpointOneTreeCLUSTERED, SimulateGraph, SimulateGraphClustered, Statistic
 DEBUG = True
 
 # Data structure containing the algorithms under
@@ -39,8 +38,8 @@ DEBUG = True
 graph = None
 
 algos = {
-         'One Tree': [one_tree_pre, RouteOneTree],
-         'One Tree Checkpoint':[one_tree_with_random_checkpoint_pre,RouteWithOneCheckpointOneTree],
+         'One Tree Clustered': [one_tree_pre, RouteOneTreeCLUSTERED],
+         'One Tree Checkpoint Clustered':[one_tree_with_random_checkpoint_pre,RouteWithOneCheckpointOneTreeCLUSTERED],
          #'One Tree': [one_tree_pre, RouteOneTreeCLUSTERED],
          #'One Tree Checkpoint':[one_tree_with_random_checkpoint_pre,RouteWithOneCheckpointOneTreeCLUSTERED],
          #'SquareOne':[PrepareSQ1,RouteSQ1]
@@ -98,34 +97,67 @@ def one_experiment(g, seed, out, algo):
         score = 1000*1000
     return score
 
+# run experiments with d-regular graphs
+# out denotes file handle to write results to
+# seed is used for pseudorandom number generation in this run
+# rep denotes the number of repetitions in the secondary for loop
+def run_regular(out=None, seed=0, rep=5):
+    ss = min(int(n / 2), samplesize)
+    fn = min(int(n * k / 4), f_num)
+    set_parameters([n, rep, k, ss, fn, seed, name + "regular-"])
+    write_graphs()
+    for i in range(rep):
+        random.seed(seed + i)
+        g = read_graph(i)
+        random.seed(seed + i)
+        for (algoname, algo) in algos.items():
+            # graph, size, connectivity, algorithm, index,
+            out.write('%s, %i, %i, %s, %i' % ("regular", n, k, algoname, i))
+            algos[algoname] += [one_experiment(g, seed + i, out, algo)]
+
 
 # run experiments with zoo graphs
 # out denotes file handle to write results to
 # seed is used for pseudorandom number generation in this run
 # rep denotes the number of repetitions in the shuffle for loop
-def run_zoo(out=None, seed=0, rep=5):
-    min_connectivity = 4
+def run_zoo(out=None, seed=0, rep=2):
+    global f_num
+    fr = 15 #die zahl muss geändert werden damit man die fr ändert
+    min_connectivity = 2
     original_params = [n, rep, k, samplesize, f_num, seed, name]
     if DEBUG:
         print('n_before, n_after, m_after, connectivity, degree')
-    for i in range(261):
+    zoo_list = list(glob.glob("./benchmark_graphs/*.graphml"))
+    for i in range(len(zoo_list)):
         random.seed(seed)
         g = read_zoo(i, min_connectivity)
         if g is None:
             continue
+
+        print("Len(g) = " , len(g.nodes))
         kk = nx.edge_connectivity(g)
         nn = len(g.nodes())
-        mm = len(g.edges())
-        ss = min(int(nn / 2), samplesize)
-        fn = min(int(mm / 4), f_num)
-        set_parameters([nn, rep, kk, ss, fn, seed, name + "zoo-"])
-        #print('parameters', nn, rep, kk, ss, fn, seed)
-        shuffle_and_run(g, out, seed, rep, str(i))
-        set_parameters(original_params)
-        for (algoname, algo) in algos.items():
-            index_1 = len(algo) - rep
-            index_2 = len(algo)
-            print('intermediate result: %s \t %.5E' % (algoname, np.mean(algo[index_1:index_2])))
+        if nn < 200:
+            print("Passender Graph ")
+            mm = len(g.edges())
+            ss = min(int(nn / 2), samplesize)
+            f_num = kk * fr
+            fn = min(int(mm / 4), f_num)
+            if fn == int(mm / 4):
+                print("SKIP ITERATION")
+                continue
+            print("Fehleranzahl : ", fn)
+            set_parameters([nn, rep, kk, ss, fn, seed, name + "zoo-"])
+            print("Node Number : " , nn)
+            print("Connectivity : " , kk)
+            print("Failure Number : ", fn)
+            #print('parameters', nn, rep, kk, ss, fn, seed)
+            shuffle_and_run(g, out, seed, rep, str(i))
+            set_parameters(original_params)
+            for (algoname, algo) in algos.items():
+                index_1 = len(algo) - rep
+                index_2 = len(algo)
+                print('intermediate result: %s \t %.5E' % (algoname, np.mean(algo[index_1:index_2])))
 
 # shuffle root nodes and run algorithm
 def shuffle_and_run(g, out, seed, rep, x):
@@ -162,9 +194,14 @@ def experiments(switch="all", seed=0, rep=3):
     
 
     if switch in ["zoo", "all"]:
-        out = start_file("results/benchmark-zoo-all-onetreeCP-CLUSTERED-FR" + str(i) + "-" + str(k))
+        out = start_file("results/benchmark-ZOO-all-onetreeCP-CLUSTERED-FR" + str(i) + "-" + str(k))
         run_zoo(out=out, seed=seed, rep=rep)
         out.close()
+
+    if switch in ["regular", "all"]:
+       out = start_file("results/benchmark-regular-onetree_CP_CLUSTERED-" + str(n) + "-" + str(k))
+       run_regular(out=out, seed=seed, rep=rep)
+       out.close()
 
     print()
     for (algoname, algo) in algos.items():
@@ -173,10 +210,8 @@ def experiments(switch="all", seed=0, rep=3):
 
 
 if __name__ == "__main__":
-    f_num = 5
+    f_num = 5 #number of failed links
     for i in range(1,13):
-        failure_rate = i
-        #f_num = 26 #number of failed links
         n = 50 # number of nodes
         k = 5 #base connectivity
         samplesize = 5 #number of sources to route a packet to destination
@@ -204,7 +239,7 @@ if __name__ == "__main__":
         print("time elapsed", end - start)
         print("start time", time.asctime(time.localtime(start)))
         print("end time", time.asctime(time.localtime(end)))
-        f_num = f_num + 5
+        f_num = f_num * i
 
 
 
