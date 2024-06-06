@@ -387,8 +387,8 @@ if __name__ == "__main__":
     f_num = 40 #number of failed links
     n = 100 # number of nodes
     k = 5 #base connectivity
-    samplesize = 20 #number of sources to route a packet to destination
-    rep = 100 #number of experiments
+    samplesize = 5 #number of sources to route a packet to destination
+    rep = 5 #number of experiments
     switch = 'all' #which experiments to run with same parameters
     seed = 0 #random seed
     name = "infocom-" #result files start with this name

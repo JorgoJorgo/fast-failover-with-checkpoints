@@ -529,8 +529,13 @@ def RouteFaces(s,d,fails,faces):
 
     skipSonderfall = False
 
-    #im letzten index von faces ist der ganze graph drin##################################
-    faces[len(faces)-1].add_edge(s, d)
+    #im letzten index von faces ist der ganze graph drin
+    try:
+        faces[len(faces)-1].add_edge(s, d)
+        
+    except: #special case where there are no faces for s (special case that didnt get tested earlier and only happens in topology zoo graphs)
+        faces = [nx.PlanarEmbedding()]
+        faces[0].add_edge(s, d)
 
     imaginary_edge = (s,d)
     print("Faces : ")
