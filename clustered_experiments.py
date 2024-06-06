@@ -7,10 +7,12 @@ import itertools
 import random
 import time
 import glob
+from arborescences import reset_arb_attribute
 from objective_function_experiments import *
+from routing_clustered import RouteOneTreeCLUSTERED, RouteWithOneCheckpointOneTreeCLUSTERED
 from trees import one_tree_pre
 from trees_with_cp import one_tree_with_random_checkpoint_pre
-from routing import RouteOneTree
+from routing import RouteOneTree, RouteWithOneCheckpointOneTree, SimulateGraph, SimulateGraphClustered, Statistic
 DEBUG = True
 
 # Data structure containing the algorithms under
@@ -32,10 +34,15 @@ DEBUG = True
 #
 
 
-#Hier erfolgt die Ausführung von OneTree
+
+
+graph = None
+
 algos = {
          'One Tree': [one_tree_pre, RouteOneTree],
          'One Tree Checkpoint':[one_tree_with_random_checkpoint_pre,RouteWithOneCheckpointOneTree],
+         #'One Tree': [one_tree_pre, RouteOneTreeCLUSTERED],
+         #'One Tree Checkpoint':[one_tree_with_random_checkpoint_pre,RouteWithOneCheckpointOneTreeCLUSTERED],
          #'SquareOne':[PrepareSQ1,RouteSQ1]
          }
 
@@ -71,7 +78,7 @@ def one_experiment(g, seed, out, algo):
     t = time.time()
     print("Before simulate graph")
     #hier sage ich dass ich den routing algorithmus simulieren soll (in stat steht welchen routing algorithmus ich ausführen will))#################################################################################################################################
-    SimulateGraph(g, True, [stat], f_num, samplesize, precomputation=precomputation)
+    SimulateGraphClustered(g, True, [stat], f_num, samplesize, precomputation=precomputation, targeted=True)
     print("After simulate")
     rt = (time.time() - t)/samplesize
     success_ratio = stat.succ/ samplesize
@@ -91,30 +98,6 @@ def one_experiment(g, seed, out, algo):
         score = 1000*1000
     return score
 
-
-# run experiments with AS graphs
-# out denotes file handle to write results to
-# seed is used for pseudorandom number generation in this run
-# rep denotes the number of repetitions in the shuffle for loop
-def run_AS(out=None, seed=0, rep=5):
-    for i in range(4, 5):
-        generate_trimmed_AS(i)
-    files = glob.glob('./benchmark_graphs/AS*.csv')
-    original_params = [n, rep, k, samplesize, f_num, seed, name]
-    for x in files:
-        random.seed(seed)
-        kk = int(x[-5:-4])
-        g = nx.read_edgelist(x).to_directed()
-        g.graph['k'] = kk
-        nn = len(g.nodes())
-        mm = len(g.edges())
-        ss = min(int(nn / 2), samplesize)
-        fn = min(int(mm / 4), f_num)
-        fails = random.sample(list(g.edges()), fn)
-        g.graph['fails'] = fails
-        set_parameters([nn, rep, kk, ss, fn, seed, name + "AS-"])
-        shuffle_and_run(g, out, seed, rep, x)
-        set_parameters(original_params)
 
 # run experiments with zoo graphs
 # out denotes file handle to write results to
@@ -151,28 +134,12 @@ def shuffle_and_run(g, out, seed, rep, x):
     random.shuffle(nodes)
     for count in range(rep):
         g.graph['root'] = nodes[count % len(nodes)]
+        graph = g
         for (algoname, algo) in algos.items():
             # graph, size, connectivity, algorithm, index,
             out.write('%s, %i, %i, %s, %i' % (x, len(nodes), g.graph['k'], algoname, count))
             algos[algoname] += [one_experiment(g, seed + count, out, algo)]
 
-# run experiments with d-regular graphs
-# out denotes file handle to write results to
-# seed is used for pseudorandom number generation in this run
-# rep denotes the number of repetitions in the secondary for loop
-def run_regular(out=None, seed=6, rep=5):
-    ss = min(int(n / 2), samplesize)
-    fn = min(int(n * k / 4), f_num)
-    set_parameters([n, rep, k, ss, fn, seed, name + "regular-"])
-    write_graphs()
-    for i in range(rep):
-        random.seed(seed + i)
-        g = read_graph(i)
-        random.seed(seed + i)
-        for (algoname, algo) in algos.items():
-            # graph, size, connectivity, algorithm, index,
-            out.write('%s, %i, %i, %s, %i' % ("regular", n, k, algoname, i))
-            algos[algoname] += [one_experiment(g, seed + i, out, algo)]
 
 # start file to capture results
 def start_file(filename):
@@ -187,119 +154,16 @@ def start_file(filename):
 
 
 
-#testen ob onetree auch trees baut mit breite mehr als 2
-def run_custom(out=None, seed=0, rep=5):
-    global f_num 
-
-    original_params = [n, rep, k, samplesize, f_num, seed, name]
-    graphs = []
-    fails = []
-
-    graph1, fail1 = create_custom_graph()
-
-    graphs.append(graph1)
-    fails.append(fail1) 
-
-    for i in range(0, len(graphs)):
-        f_num = len(fails[i]) # How many failed edges we selected in our create_custom_graph
-        PG = nx.nx_pydot.write_dot(graphs[i] , "./customOneTree/custom_multipletrees_"+ str(i))
-        print("Fails : ", fails[i])
-        random.seed(seed)
-        kk = 5
-        g = graphs[i]
-        g.graph['k'] = kk
-        nn = len(g.nodes())
-        mm = len(g.edges())
-        ss = min(int(nn / 2), samplesize)
-        fn = min(int(mm / 2), f_num)
-        print("Minimum fn: ", fn, "MM/2: ", mm/2 , "f_num :", f_num )
-        fails = fails[i]
-        g.graph['fails'] = fails
-        set_parameters([nn, rep, kk, ss, fn, seed, name + "CUSTOM"])
-        print("Global f_num : ", f_num )
-        shuffle_and_run_CUSTOM(g, out, seed, rep, graphs[i])
-        print("Global f_num after run : ", f_num )
-        set_parameters(original_params)
-        print("Global f_num after reset : ", f_num )
-        
-# selecting specific node as source for algorithm runs
-def shuffle_and_run_CUSTOM(g, out, seed, rep, x):
-    random.seed(seed)
-    nodes = list(g.nodes())
-    random.shuffle(nodes)
-    for count in range(rep):
-        g.graph['root'] = nodes[count % len(nodes)]
-        for (algoname, algo) in algos.items():
-            # graph, size, connectivity, algorithm, index,
-            out.write('%s, %i, %i, %s, %i' % (x, len(nodes), g.graph['k'], algoname, count))
-            algos[algoname] += [one_experiment(g, seed + count, out, algo)]
-        
-def run_clustered_failures(out=None, seed=0, rep=5):
-    
-    global f_num 
-    original_params = [n, rep, k, samplesize, f_num, seed, name]
-    graphs = []
-    fails = []
-
-    graph1, fail1 = create_clustered_failures_graph(n,k,f_num)
-
-    graphs.append(graph1)
-    fails.append(fail1) 
-
-    for i in range(0, len(graphs)):
-        f_num = len(fails[i]) # How many failed edges we selected in our create_custom_graph
-        PG = nx.nx_pydot.write_dot(graphs[i] , "./customOneTreeCP/custom_multipletrees_"+ str(i))
-        print("Fails : ", fails[i])
-        random.seed(seed)
-        kk = 5
-        g = graphs[i]
-        g.graph['k'] = kk
-        nn = len(g.nodes())
-        mm = len(g.edges())
-        ss = min(int(nn / 2), samplesize)
-        fn = min(int(mm / 2), f_num)
-        print("Minimum fn: ", fn, "MM/2: ", mm/2 , "f_num :", f_num )
-        fails = fails[i]
-        g.graph['fails'] = fails
-        set_parameters([nn, rep, kk, ss, fn, seed, name + "CUSTOM"])
-        print("Global f_num : ", f_num )
-        shuffle_and_run_CUSTOM(g, out, seed, rep, graphs[i])
-        print("Global f_num after run : ", f_num )
-        set_parameters(original_params)
-        print("Global f_num after reset : ", f_num )
-        
-
 
 # run experiments
 # seed is used for pseudorandom number generation in this run
 # switch determines which experiments are run
 def experiments(switch="all", seed=0, rep=3):
     
-    if switch in ["clustered", "all"]:
-        #hier steht wo die ergebnisse des durchlaufs gespeichert werden : results/benchmark-cusutom-5.txt
-        out = start_file("results/benchmark-clustered-onetreeCP-" + str(k))
-        run_clustered_failures(out=out, seed=seed, rep=rep)
-        out.close()
-        
-    if switch in ["custom", "all"]:
-        #hier steht wo die ergebnisse des durchlaufs gespeichert werden : results/benchmark-cusutom-5.txt
-        out = start_file("results/benchmark-custom-oneTreeCP-" + str(k)+ "fnum=60")
-        run_custom(out=out, seed=seed, rep=rep)
-        out.close()
-
-    if switch in ["regular", "all"]:
-        out = start_file("results/benchmark-regular-onetreeCP-FR" + str(i) + "-" + str(n) + "-" + str(k))
-        run_regular(out=out, seed=seed, rep=rep)
-        out.close()
 
     if switch in ["zoo", "all"]:
-        out = start_file("results/benchmark-zoo-all-onetreeCP-FR" + str(i) + "-" + str(k))
+        out = start_file("results/benchmark-zoo-all-onetreeCP-CLUSTERED-FR" + str(i) + "-" + str(k))
         run_zoo(out=out, seed=seed, rep=rep)
-        out.close()
-
-    if switch in ["AS"]:
-        out = start_file("results/benchmark-as_seed_-all-multiple-trees-FR" + str(i) + "-" + str(seed))
-        run_AS(out=out, seed=seed, rep=rep)
         out.close()
 
     print()
@@ -341,3 +205,10 @@ if __name__ == "__main__":
         print("start time", time.asctime(time.localtime(start)))
         print("end time", time.asctime(time.localtime(end)))
         f_num = f_num + 5
+
+
+
+
+
+
+

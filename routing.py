@@ -20,6 +20,7 @@ f_num = 40
 samplesize=20
 name = "experiment-routing"
 
+
 #set global variables
 def set_params(params):
     set_routing_params(params)
@@ -42,30 +43,19 @@ def set_routing_params(params):
 # the face-routing from s -> cp and after that the tree-routing from cp -> d
 def RouteWithOneCheckpointOneTree(s,d,fails,paths):
     
+    
+    ####################ONLY FOR RUNNING WITH CLUSTERED FAILURES VIA THE CUSTOM RUN COMMAND#################
+    # # simulating clustered failures by trying to route always by starting at a specific source
+    # # Assuming paths is a dictionary with keys as possible values
+    # keys = list(paths.keys())
+    # # Select a random key for s
+    # s = keys[0]
+    # # Select a different random key for d
+    # d = keys[len(keys)-1]
+    ##################################
     print()
     print("Routing with a checkpoint started for : ", s , " -> " , d) 
-    
-    # print(" ")
-    # print(" START OF CP ROUTING ")
-    # converted_paths = {}
-    # for item1 in paths:
-    #     print(" ")
-    #     print("**************")
-
-    #     for item2 in paths[item1]:
-            
-    #         if item1 not in converted_paths:
-    #             converted_paths[item1] = {}
-              
-    #         converted_paths[item1][item2]= {
-    #             'tree': paths[item1][item2]['tree_cp_to_d'],
-    #             'edps': paths[item1][item2]['edps_cp_to_d']
-    #         }
-            
-    #         print("(CP ROUTING START) EDPS CP -> D for : (", item1 ,",", paths[item1][item2]['cp'] ,"," , item2 , ") : ", converted_paths[item1][item2]['edps'])
-            
-    #input(" ")
-    
+    print("Fails in CP Routing : ", fails)
     detour_edges = []
     hops = 0
     switches = 0
@@ -133,7 +123,7 @@ def RouteWithOneCheckpointOneTree(s,d,fails,paths):
             
                  
     #after that the routing continues from CP to D using the tree-routing
-    routing_failure_tree, hops_tree, switches_tree, detour_edges_tree = RouteOneTree(cp,d,fails,converted_paths)
+    routing_failure_tree, hops_tree, switches_tree, detour_edges_tree = RouteOneTree_CP(cp,d,fails,converted_paths)
     
     if(routing_failure_tree):
         print("Routing failed via Tree from CP to D ")
@@ -159,6 +149,282 @@ def RouteWithOneCheckpointOneTree(s,d,fails,paths):
     print('------------------------------------------------------')
     print(" ")
     return (False, hops, switches, detour_edges)
+
+#just for simplicity of debugging the onetreecp routing has its on function
+#but it is the same as the routeonetree
+def RouteOneTree_CP (s,d,fails,paths):
+    
+    #print("FAIL NUMBER : ", len(fails))
+    if s != d :
+        
+        currentNode = -1
+        edpIndex = 0
+        detour_edges = []
+        hops = 0
+        switches = 0
+        tree = paths[s][d]['tree']
+        edps_for_s_d = paths[s][d]['edps']
+
+        print('Routing started for ' , s , " to " , d )
+
+        #als erstes anhand der EDPs (außer dem längsten, also dem letzten) versuchen zu routen
+        for edp in edps_for_s_d:
+
+            currentNode = s
+            last_node = s 
+
+            if edp != edps_for_s_d[len(edps_for_s_d) -1]:
+
+                currentNode = edp[edpIndex]
+
+
+                #jeder EDP wird so weit durchlaufen bis man mit dem currentNode zum Ziel kommt oder man auf eine kaputte Kante stößt
+                while (currentNode != d):
+
+
+                    #man prüft ob die nächste Kante im EDP kaputt ist so, indem man guckt ob eine Kante vom currentNode edp[edpIndex] zum nächsten Node im EDP edp[edpIndex+1] in Fails ist
+                    #dies beruht auf lokalen Informationen, da EDPs nur eine eingehende Kante haben ( auf der das Paket ankommt ) und eine ausgehende Kante (auf der das Paket nicht ankommt)
+                    if (edp[edpIndex], edp[edpIndex +1]) in fails or (edp[edpIndex +1], edp[edpIndex]) in fails:
+                        
+
+                        #wenn man auf eine fehlerhafte Kante stößt dann wechselt man den Pfad
+                        switches += 1
+
+                        #die kanten die wir wieder zurückgehen sind die kanten die wir schon in dem edp gelaufen sind
+                        detour_edges.append( (edp[edpIndex], edp[edpIndex +1]) )
+
+                        #wir fangen beim neuen edp ganz am anfang an
+                        tmp_node = currentNode #und gehen eine Kante hoch, also den edp zurück
+                        currentNode = last_node #das "rückwärts den edp gehen" kann so gemacht werden, da die pakete so nur über den port gehen müssen über den sie reingekommen sind
+                        last_node = tmp_node
+                        hops += 1
+                        break
+
+                    else :#wenn die kante die man gehen will inordnung ist, die kante gehen und zum nächsten knoten schalten
+                        edpIndex += 1
+                        hops += 1
+                        last_node = currentNode 
+                        currentNode = edp[edpIndex] #man kann hier currentnode direkt so setzen, da es im edp für jeden knoten jeweils 1 ausgehende
+                                                    #und genau eine eingehende Kante gibt
+                    #endif
+
+                #endwhile
+
+                #nun gibt es 2 Möglichkeiten aus denen die while-Schleife abgebrochen wurde : Ziel erreicht / EDP hat kaputte Kante 
+
+
+                if currentNode == d : #wir haben die destination mit einem der edps erreicht
+                    print('Routing done via EDP')
+                    print('------------------------------------------------------')
+                    return (False, hops, switches, detour_edges)
+                #endif
+                
+                #wenn man hier angelangt ist, dann bedeutet dies, dass die while(currentNode != d) beendet wurde weil man auf eine kaputte kante gestoßen ist 
+                #und dass man nicht an der destination angekommen ist, daher muss man jetzt an die source zurück um den nächsten edp zu starten
+                while currentNode != s: #hier findet die Rückführung statt
+                    detour_edges.append( (last_node,currentNode) )
+
+                    last_node = currentNode #man geht den edp so weit hoch bis man an der source ist
+                    
+                    printIndex = edpIndex-1
+                    
+                    
+                    print("Source : ", s , " Destination : ", d)
+                    print("Edp : ", edp)
+                    print("EdpIndex-1 : ", printIndex)
+                    print("edp[edpIndex-1] : ", edp[edpIndex-1])
+                    print(" ")
+                    
+                    
+                    currentNode = edp[edpIndex-1] #man kann auch hier direkt den edp index verwenden da man genau 1 eingehende kante hat
+                    edpIndex = edpIndex-1
+                    hops += 1
+
+                #endwhile
+            #endif
+
+        #endfor
+
+        # wenn wir es nicht geschafft haben anhand der edps allein zum ziel zu routen dann geht es am längsten edp weiter
+        print('Routing via EDPs FAILED')
+        
+        currentNode = s
+        print("Routing via Tree started")
+        last_node = currentNode
+
+
+        while(currentNode != d):#in dieser Schleife findet das Routing im Tree statt
+                                #die idee hinter dieser schleife ist ein großes switch-case
+                                #bei dem man je nach eingehenden und funktionierenden ausgehenden ports switcht
+                                #nach jedem schritt den man im baum geht folgt die prüfung ob man schon am ziel angekommen ist
+
+
+            #kommt das paket von einer eingehenden kante an dann wird der kleinste rang der kinder gewählt
+            #denn man war noch nicht an diesem node
+            if last_node == get_parent_node(tree,currentNode) or last_node == currentNode:
+
+                #suche das kind mit dem kleinsten  rang
+
+                children = []
+                #es werden alle Kinder gespeichert zu denen der jetzige Knoten einen Verbindung hat und sortiert nach ihren Rängen
+                out_edges_with_fails = tree.out_edges(currentNode)
+                out_edges = []
+                for edge in out_edges_with_fails:
+                    if edge in fails or tuple(reversed(edge)) in fails:
+                        continue
+                    else: 
+                        out_edges.append(edge)
+                    #endif
+                #endfor
+                for nodes in out_edges:
+                    children.append(nodes[1])
+                #endfor
+                children.sort(key=lambda x: (getRank(tree, x)))
+
+
+                if len(children) >  0 : #wenn es kinder gibt, zu denen die Kanten nicht kaputt sind
+                    #setze lastnode auf currentnode
+                    #setze current node auf das kind mit dem kleinesten rang
+                    #dadurch "geht man" die kante zum kind
+                    last_node = currentNode
+                    currentNode = children[0]
+                    hops += 1
+                   
+
+                else: #wenn alle Kanten zu den Kindern kaputt sind dann ist man fertig wenn man an der source ist oder man muss eine kante hoch
+                    if currentNode == s: 
+                        break; #das routing ist gescheitert
+                    #endif
+
+
+                    #man nimmt die eingehende kante des currentnode und "geht eine stufe hoch"
+                    hops += 1
+                    detour_edges.append( (currentNode, last_node) )
+                    last_node = currentNode
+                    currentNode = get_parent_node(tree,currentNode)
+
+                #endif
+            #endif
+
+
+
+            children_of_currentNode = []
+
+            for nodes in tree.out_edges(currentNode):
+                    children_of_currentNode.append(nodes[1])
+            #endfor
+
+            #wenn das Paket nicht aus einer eingehenden Kante kommt, dann muss es aus einer ausgehenden kommen
+            #dafür muss man den Rang des Kindes bestimmen von dem das Paket kommt
+            #das Kind mit dem nächsthöheren Rang suchen
+            if last_node in children_of_currentNode:
+            
+                #alle funktionierenden Kinder finden
+                children = []
+                out_edges_with_fails = tree.out_edges(currentNode)
+                out_edges = []
+                for edge in out_edges_with_fails:
+                    if edge in fails or tuple(reversed(edge)) in fails:
+                        continue
+                        
+                    else: 
+                        out_edges.append(edge)
+                    #endif
+
+                #endfor
+                for nodes in out_edges:
+                    children.append(nodes[1])
+                #endfor
+                children.sort(key=lambda x: (getRank(tree, x)))
+
+                
+
+                #wenn es Funktionierende Kinder gibt dann muss man das Kind suchen mit dem nächstgrößeren Rang
+                if len(children) > 0: 
+                    #prüfen ob es noch kinder gibt mit größerem rang , also ob es noch zu durchlaufene kinder gibt
+                    
+
+                    #welchen index hat das kind nach seinem "rank" in der sortierten liste
+                    index_of_last_node = children.index(last_node) if last_node in children else -1 
+                
+                    #alle  kinder ohne das wo das paket herkommt
+                    children_without_last = [a for a in children if a != last_node] 
+
+                    
+
+                    #es gibt keine möglichen kinder mehr und man ist an der Source
+                    #dann ist das Routing fehlgeschlagen
+                    if len(children_without_last) == 0 and currentNode == s : 
+                        break;
+
+                    #Sonderfall (noch unklar ob nötig)
+                    #wenn man aus einem Kind kommt, zu dem die Kante fehlerhaft ist
+                    #man nimmt trotzdem das nächste Kind
+                    elif index_of_last_node == -1:
+                        
+                        hops += 1
+                        last_node = currentNode
+                        currentNode = children[0]
+
+
+                    #das kind wo das paket herkommt hatte den höchsten rang der kinder, also das letztmögliche
+                    #daher muss man den Baum eine Stufe hoch
+                    elif index_of_last_node == len(children)-1: 
+                        
+                        if currentNode != s: #man muss eine stufe hoch gehen
+                            hops += 1
+                            detour_edges.append( (currentNode, last_node) )
+                            last_node = currentNode
+                            currentNode = get_parent_node(tree,currentNode)
+                        else:#sonderfall wenn man an der Source ist dann ist das Routing gescheitert
+                            break;
+
+                    #es gibt noch mindestens 1 Kind mit höherem Rang
+                    elif index_of_last_node < len(children)-1 : 
+                        
+                        #wenn ja dann nimm das Kind mit dem nächst größeren Rang aus der sortierten Children Liste
+                        hops += 1
+                        last_node = currentNode
+                        currentNode = children[index_of_last_node+1]
+
+
+                    #es gibt keine kinder mehr am currentnode
+                    else: 
+                        
+                        #wenn nein dann setze currentnode auf den parent
+                        hops += 1
+                        detour_edges.append( (currentNode, last_node) )
+                        last_node = currentNode
+                        currentNode = get_parent_node(tree,currentNode)
+                    #endif
+
+                #wenn es keine funktionierenden Kinder gibt dann geht man eine Stufe hoch
+                else: 
+                    detour_edges.append( (currentNode, last_node) )
+                    hops += 1
+                    
+                    last_node = currentNode
+                    currentNode = get_parent_node(tree,currentNode)
+                   
+                #endif
+            
+                
+        #endwhile
+
+        #hier kommt man an wenn die while schleife die den tree durchläuft "gebreakt" wurde und man mit dem tree nicht zum ziel gekommen ist
+        #oder wenn die bedingung nicht mehr gilt (currentNode != d) und man das ziel erreicht hat
+
+        if currentNode == d : #wir haben die destination mit dem tree erreicht
+            print('Routing done via Tree')
+            print('------------------------------------------------------')
+            return (False, hops, switches, detour_edges)
+        #endif
+        
+        print('Routing via Tree failed')
+        print('------------------------------------------------------')
+        return (True, hops, switches, detour_edges)
+    else: 
+        return (True, 0, 0, [])
         
         
 ########################### HELPER FUNCTIONS FACES ###################################################################
@@ -932,6 +1198,19 @@ def print_paths(paths):
 #dies geschieht indem man nach weiterleitung eines pakets an jedem knoten den nächst besten rang bestimmt
 def RouteOneTree (s,d,fails,paths):
     
+    print("Fails in  ONETREE Routing : ", fails)
+    ####################ONLY FOR RUNNING WITH CLUSTERED FAILURES VIA THE CUSTOM RUN COMMAND#################
+    # # Assuming paths is a dictionary with keys as possible values
+    # keys = list(paths.keys())
+    # # Select a random key for s
+    # s = keys[0]
+    # neighbors = list(paths[s])
+    # print("Neighbors : ", neighbors)
+    # # Select a different random key for d
+    # d = keys[len(keys)-1]
+    ##################################
+    
+    #print("FAIL NUMBER : ", len(fails))
     if s != d :
         
         currentNode = -1
@@ -1595,8 +1874,21 @@ def SimulateGraph(g, RANDOM, stats, f, samplesize, precomputation=None, dest=Non
             if precomputation is None:
                return -1
     fails = edg[:f]
-    if targeted:
+    if targeted: #neu eingefügt für die clustered failures
         fails = []
+        # Step 1: Kanten in der Nähe des Knotens 'd' (root) auswählen
+        for u, v in list(g.edges(d)):
+            if random.random() < 0.6:
+                fails.append((u, v))
+        
+        # Sicherstellen, dass nicht alle Kanten von 'd' ausfallen
+        if len(fails) == len(list(g.edges(d))):
+            fails.pop()
+        
+        # Step 2: Zufällige Auswahl von zusätzlichen Kanten
+        additional_fails = random.sample(list(set(edg) - set(fails)), f - len(fails))
+        fails.extend(additional_fails)
+        
     failures1 = {(u, v): g[u][v]['arb'] for (u, v) in fails}
     failures1.update({(v, u): g[u][v]['arb'] for (u, v) in fails})
 
@@ -1726,3 +2018,99 @@ class Statistic:
 
     def load_distribution(self):
         return [x*1.0/self.size**2 for x in np.bincount(self.load.values())]
+
+
+
+def SimulateGraphClustered(g, RANDOM, stats, f, samplesize, precomputation=None, dest=None, tree=None, targeted=False):
+    edg = list(g.edges())
+    fails = g.graph['fails']
+    if fails is not None:
+        if len(fails) < f:
+            fails = fails + edg[:f - len(fails) + 1]
+        edg = fails
+    if f > len(edg):
+        print('more failures than edges')
+        print('simulate', len(g.edges()), len(fails), f)
+        return -1
+    d = g.graph['root']
+    k = g.graph.get('k', 0)  # Placeholder for k, update as needed
+    if precomputation is None:
+        precomputation = tree
+        if precomputation is None:
+            precomputation = GreedyArborescenceDecomposition(g)
+            if precomputation is None:
+               return -1
+    
+    if targeted:
+        fails = []
+        # Step 1: Kanten in der Nähe des Knotens 'd' (root) auswählen
+        for u, v in list(g.edges(d)):
+            if random.random() < 0.6:
+                fails.append((u, v))
+        
+        # Sicherstellen, dass nicht alle Kanten von 'd' ausfallen
+        if len(fails) == len(list(g.edges(d))):
+            fails.pop()
+        
+        # Step 2: Zufällige Auswahl von zusätzlichen Kanten
+        available_edges = list(set(edg) - set(fails))
+        num_additional_fails = min(f - len(fails), len(available_edges))
+        additional_fails = random.sample(available_edges, num_additional_fails)
+        fails.extend(additional_fails)
+    else:
+        fails = edg[:f]
+
+    failures1 = {(u, v): g[u][v]['arb'] for (u, v) in fails}
+    failures1.update({(v, u): g[u][v]['arb'] for (u, v) in fails})
+
+    g = g.copy(as_view=False)
+    g.remove_edges_from(failures1.keys())
+    nodes = list(set(connected_component_nodes_with_d_after_failures(g, [], d)) - set([dest, d]))
+    dist = nx.shortest_path_length(g, target=d)
+    if len(nodes) < samplesize:
+        print('Not enough nodes in connected component of destination (%i nodes, %i sample size), adapting it' % (len(nodes), samplesize))
+        PG = nx.nx_pydot.write_dot(g, "./graphen/failedGraphs/graph")
+        samplesize = len(nodes)
+    nodes = list(set(g.nodes()) - set([dest, d]))
+    random.shuffle(nodes)
+    count = 0
+    for s in nodes[:samplesize]:
+        print("Loop over samplesize is running")
+        count += 1
+        for stat in stats:
+            print("Loop over stats is running")
+            if targeted:
+                fails = list(nx.minimum_edge_cut(g, s=s, t=d))[1:]
+                random.shuffle(fails)
+                failures1 = {(u, v): g[u][v]['arb'] for (u, v) in fails}
+                g.remove_edges_from(failures1.keys())
+                x = dist[s]
+                dist[s] = nx.shortest_path_length(g, source=s, target=d)
+            if (s == d) or (s not in dist):
+                stat.fails += 1
+                continue
+            (fail, hops) = stat.update(s, d, fails, precomputation, dist[s])
+            if fail:
+                stat.hops = stat.hops[:-1]
+                stat.stretch = stat.stretch[:-1]
+            elif hops < 0:
+                stat.hops = stat.hops[:-1]
+                stat.stretch = stat.stretch[:-1]
+                stat.succ -= 1
+            if targeted:
+                for ((u, v), i) in failures1.items():
+                    g.add_edge(u, v)
+                    g[u][v]['arb'] = i
+            if stat.succ + stat.fails != count:
+                print('problem, success and failures do not add up', stat.succ, stat.fails, count)
+                print('source', s)
+                if stat.has_graph:
+                    drawGraphWithLabels(stat.graph, "results/problem.png")
+    if not targeted:
+        for ((u, v), i) in failures1.items():
+            g.add_edge(u, v)
+            g[u][v]['arb'] = i
+    for stat in stats:
+        stat.finalize()
+    sys.stdout.flush()
+    return fails

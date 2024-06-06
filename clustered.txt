@@ -1,0 +1,2975 @@
+Thu Jun  6 12:49:22 2024
+n_before, n_after, m_after, connectivity, degree
+15 ./benchmark_graphs/Goodnet.graphml n_before= 17 n_after= 5 m_after= 25 connectivity= 4 degree= 10
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (4 nodes, 5 sample size), adapting it
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(12, 9)]
+Routing started for  5  to  9
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(12, 9)]
+Routing started for  15  to  9
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(12, 9)]
+Routing started for  12  to  9
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  7  to  9
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 4 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (4 nodes, 5 sample size), adapting it
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  5  ->  9
+Fails in CP Routing :  [(12, 9)]
+Routing in faces started for :  5  ->  7
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  7  to  9
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  15  ->  9
+Fails in CP Routing :  [(12, 9)]
+Routing in faces started for :  15  ->  12
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  12  to  9
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  12  ->  9
+Fails in CP Routing :  [(12, 9)]
+Routing in faces started for :  12  ->  15
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  15  to  9
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  7  ->  9
+Fails in CP Routing :  []
+Routing in faces started for :  7  ->  15
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  15  to  9
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 4 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (4 nodes, 5 sample size), adapting it
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  12  to  7
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  5  to  7
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  9  to  7
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  15  to  7
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 4 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (4 nodes, 5 sample size), adapting it
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  12  ->  7
+Fails in CP Routing :  []
+Routing in faces started for :  12  ->  15
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  15  to  7
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  5  ->  7
+Fails in CP Routing :  []
+Routing in faces started for :  5  ->  15
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  15  to  7
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  9  ->  7
+Fails in CP Routing :  []
+Routing in faces started for :  9  ->  15
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  15  to  7
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  15  ->  7
+Fails in CP Routing :  []
+Routing in faces started for :  15  ->  12
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  12  to  7
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 4 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (4 nodes, 5 sample size), adapting it
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  7  to  5
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  9  to  5
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  15  to  5
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  12  to  5
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 4 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (4 nodes, 5 sample size), adapting it
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  7  ->  5
+Fails in CP Routing :  []
+Routing in faces started for :  7  ->  9
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  9  to  5
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  9  ->  5
+Fails in CP Routing :  []
+Routing in faces started for :  9  ->  15
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  15  to  5
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  15  ->  5
+Fails in CP Routing :  []
+Routing in faces started for :  15  ->  12
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  12  to  5
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  12  ->  5
+Fails in CP Routing :  []
+Routing in faces started for :  12  ->  15
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  15  to  5
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 4 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (4 nodes, 5 sample size), adapting it
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  5  to  15
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  9  to  15
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  12  to  15
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  7  to  15
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 4 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (4 nodes, 5 sample size), adapting it
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  5  ->  15
+Fails in CP Routing :  []
+Routing in faces started for :  5  ->  7
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  7  to  15
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  9  ->  15
+Fails in CP Routing :  []
+Routing in faces started for :  9  ->  12
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  12  to  15
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  12  ->  15
+Fails in CP Routing :  []
+Routing in faces started for :  12  ->  9
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  9  to  15
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  7  ->  15
+Fails in CP Routing :  []
+Routing in faces started for :  7  ->  9
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  9  to  15
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 4 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (0 nodes, 5 sample size), adapting it
+After simulate
+no success_ratio <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (0 nodes, 5 sample size), adapting it
+After simulate
+no success_ratio <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+intermediate result: One Tree 	 2.00000E+05
+intermediate result: One Tree Checkpoint 	 2.00002E+05
+20 ./benchmark_graphs/Highwinds.graphml n_before= 18 n_after= 5 m_after= 25 connectivity= 4 degree= 10
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (4 nodes, 5 sample size), adapting it
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(12, 14)]
+Routing started for  17  to  14
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(12, 14)]
+Routing started for  9  to  14
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(12, 14)]
+Routing started for  12  to  14
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  15  to  14
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 4 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (4 nodes, 5 sample size), adapting it
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  17  ->  14
+Fails in CP Routing :  [(12, 14)]
+Routing in faces started for :  17  ->  15
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  15  to  14
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  9  ->  14
+Fails in CP Routing :  [(12, 14)]
+Routing in faces started for :  9  ->  12
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  12  to  14
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  12  ->  14
+Fails in CP Routing :  [(12, 14)]
+Routing in faces started for :  12  ->  17
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  17  to  14
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  15  ->  14
+Fails in CP Routing :  []
+Routing in faces started for :  15  ->  17
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  17  to  14
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 4 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (4 nodes, 5 sample size), adapting it
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(15, 12)]
+Routing started for  17  to  12
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(15, 12)]
+Routing started for  14  to  12
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(15, 12)]
+Routing started for  9  to  12
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(15, 12)]
+Routing started for  15  to  12
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 4 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (4 nodes, 5 sample size), adapting it
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  17  ->  12
+Fails in CP Routing :  [(15, 12)]
+Routing in faces started for :  17  ->  15
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  15  to  12
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  14  ->  12
+Fails in CP Routing :  [(15, 12)]
+Routing in faces started for :  14  ->  15
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  15  to  12
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  9  ->  12
+Fails in CP Routing :  [(15, 12)]
+Routing in faces started for :  9  ->  14
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  14  to  12
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  15  ->  12
+Fails in CP Routing :  [(15, 12)]
+Routing in faces started for :  15  ->  17
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  17  to  12
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 4 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (4 nodes, 5 sample size), adapting it
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(12, 9)]
+Routing started for  15  to  9
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(12, 9)]
+Routing started for  17  to  9
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  14  to  9
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(12, 9)]
+Routing started for  12  to  9
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 4 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (4 nodes, 5 sample size), adapting it
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  15  ->  9
+Fails in CP Routing :  [(12, 9)]
+Routing in faces started for :  15  ->  17
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  17  to  9
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  17  ->  9
+Fails in CP Routing :  [(12, 9)]
+Routing in faces started for :  17  ->  15
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  15  to  9
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  14  ->  9
+Fails in CP Routing :  []
+Routing in faces started for :  14  ->  15
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  15  to  9
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  12  ->  9
+Fails in CP Routing :  [(12, 9)]
+Routing in faces started for :  12  ->  17
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  17  to  9
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 4 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (0 nodes, 5 sample size), adapting it
+After simulate
+no success_ratio <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (0 nodes, 5 sample size), adapting it
+After simulate
+no success_ratio <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (0 nodes, 5 sample size), adapting it
+After simulate
+no success_ratio <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Not enough nodes in connected component of destination (0 nodes, 5 sample size), adapting it
+After simulate
+no success_ratio <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+intermediate result: One Tree 	 4.00001E+05
+intermediate result: One Tree Checkpoint 	 4.00003E+05
+39 ./benchmark_graphs/BtNorthAmerica.graphml n_before= 36 n_after= 17 m_after= 107 connectivity= 4 degree= 8
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(15, 7)]
+Routing started for  27  to  7
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(15, 7)]
+Routing started for  1  to  7
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(15, 7)]
+Routing started for  23  to  7
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(15, 7)]
+Routing started for  16  to  7
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(15, 7)]
+Routing started for  15  to  7
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  27  ->  7
+Fails in CP Routing :  [(15, 7)]
+Routing in faces started for :  27  ->  1
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  1  to  7
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  1  ->  7
+Fails in CP Routing :  [(15, 7)]
+Routing in faces started for :  1  ->  17
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  17  to  7
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  23  ->  7
+Fails in CP Routing :  [(15, 7)]
+Routing in faces started for :  23  ->  2
+ 
+Routing via second Faces started
+Routing success via Faces
+------------------------------------------------------
+ 
+Routing started for  2  to  7
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  16  ->  7
+Fails in CP Routing :  [(15, 7)]
+Routing in faces started for :  16  ->  8
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  8  to  7
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  15  ->  7
+Fails in CP Routing :  [(15, 7)]
+Routing in faces started for :  15  ->  17
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  17  to  7
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(20, 25), (10, 25), (27, 25)]
+Routing started for  7  to  25
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(8, 1), (8, 28)]
+Routing started for  8  to  25
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(10, 25), (27, 25), (20, 25)]
+Routing started for  21  to  25
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(10, 25), (27, 25), (20, 25)]
+Routing started for  20  to  25
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(20, 25), (27, 25), (10, 25)]
+Routing started for  16  to  25
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  7  ->  25
+Fails in CP Routing :  [(20, 25), (10, 25), (27, 25)]
+Routing in faces started for :  7  ->  20
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  20  to  25
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  8  ->  25
+Fails in CP Routing :  [(8, 1), (8, 28)]
+Routing in faces started for :  8  ->  28
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  28  to  25
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  21  ->  25
+Fails in CP Routing :  [(10, 25), (27, 25), (20, 25)]
+Routing in faces started for :  21  ->  1
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  1  to  25
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  20  ->  25
+Fails in CP Routing :  [(10, 25), (27, 25), (20, 25)]
+Routing in faces started for :  20  ->  8
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  8  to  25
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  16  ->  25
+Fails in CP Routing :  [(20, 25), (27, 25), (10, 25)]
+Routing in faces started for :  16  ->  17
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  17  to  25
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(1, 8), (15, 8)]
+Routing started for  2  to  8
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(1, 8), (15, 8)]
+Routing started for  16  to  8
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(1, 8), (15, 8)]
+Routing started for  25  to  8
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(1, 8), (15, 8)]
+Routing started for  22  to  8
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(1, 8), (15, 8)]
+Routing started for  17  to  8
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  2  ->  8
+Fails in CP Routing :  [(1, 8), (15, 8)]
+Routing in faces started for :  2  ->  7
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  7  to  8
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  16  ->  8
+Fails in CP Routing :  [(1, 8), (15, 8)]
+Routing in faces started for :  16  ->  22
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  22  to  8
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  25  ->  8
+Fails in CP Routing :  [(1, 8), (15, 8)]
+Routing in faces started for :  25  ->  1
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  1  to  8
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  22  ->  8
+Fails in CP Routing :  [(1, 8), (15, 8)]
+Routing in faces started for :  22  ->  2
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  2  to  8
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  17  ->  8
+Fails in CP Routing :  [(1, 8), (15, 8)]
+Routing in faces started for :  17  ->  2
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  2  to  8
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(13, 28)]
+Routing started for  13  to  28
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(13, 28)]
+Routing started for  1  to  28
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(13, 28)]
+Routing started for  7  to  28
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(13, 28)]
+Routing started for  10  to  28
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(13, 28)]
+Routing started for  2  to  28
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  13  ->  28
+Fails in CP Routing :  [(13, 28)]
+Routing in faces started for :  13  ->  7
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  7  to  28
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  1  ->  28
+Fails in CP Routing :  [(13, 28)]
+Routing in faces started for :  1  ->  17
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  17  to  28
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  7  ->  28
+Fails in CP Routing :  [(13, 28)]
+Routing in faces started for :  7  ->  2
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  2  to  28
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  10  ->  28
+Fails in CP Routing :  [(13, 28)]
+Routing in faces started for :  10  ->  25
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  25  to  28
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  2  ->  28
+Fails in CP Routing :  [(13, 28)]
+Routing in faces started for :  2  ->  25
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  25  to  28
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  28  to  20
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  22  to  20
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  15  to  20
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  7  to  20
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  25  to  20
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  28  ->  20
+Fails in CP Routing :  []
+Routing in faces started for :  28  ->  27
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  27  to  20
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  22  ->  20
+Fails in CP Routing :  []
+Routing in faces started for :  22  ->  7
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  7  to  20
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  15  ->  20
+Fails in CP Routing :  []
+Routing in faces started for :  15  ->  2
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  2  to  20
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  7  ->  20
+Fails in CP Routing :  []
+Routing in faces started for :  7  ->  8
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  8  to  20
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  25  ->  20
+Fails in CP Routing :  []
+Routing in faces started for :  25  ->  2
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  2  to  20
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+intermediate result: One Tree 	 1.80000E+00
+intermediate result: One Tree Checkpoint 	 6.80000E+00
+40 ./benchmark_graphs/Palmetto.graphml n_before= 45 n_after= 8 m_after= 42 connectivity= 4 degree= 10
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  35  to  31
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  0  to  31
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  13  to  31
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  14  to  31
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  43  to  31
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  35  ->  31
+Fails in CP Routing :  []
+Routing in faces started for :  35  ->  0
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  0  to  31
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  0  ->  31
+Fails in CP Routing :  []
+Routing in faces started for :  0  ->  17
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  17  to  31
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  13  ->  31
+Fails in CP Routing :  []
+Routing in faces started for :  13  ->  0
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  0  to  31
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  14  ->  31
+Fails in CP Routing :  []
+Routing in faces started for :  14  ->  43
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  43  to  31
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  43  ->  31
+Fails in CP Routing :  []
+Routing in faces started for :  43  ->  0
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  0  to  31
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  36  to  13
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  31  to  13
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  14  to  13
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  0  to  13
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  35  to  13
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  36  ->  13
+Fails in CP Routing :  []
+Routing in faces started for :  36  ->  31
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  31  to  13
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  31  ->  13
+Fails in CP Routing :  []
+Routing in faces started for :  31  ->  0
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  0  to  13
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  14  ->  13
+Fails in CP Routing :  []
+Routing in faces started for :  14  ->  0
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  0  to  13
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  0  ->  13
+Fails in CP Routing :  []
+Routing in faces started for :  0  ->  14
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  14  to  13
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  35  ->  13
+Fails in CP Routing :  []
+Routing in faces started for :  35  ->  31
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  31  to  13
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(17, 35), (43, 35)]
+Routing started for  17  to  35
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(17, 35), (43, 35)]
+Routing started for  43  to  35
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(17, 35), (43, 35)]
+Routing started for  13  to  35
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(43, 35), (17, 35)]
+Routing started for  31  to  35
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(43, 35), (17, 35)]
+Routing started for  0  to  35
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  17  ->  35
+Fails in CP Routing :  [(17, 35), (43, 35)]
+Routing in faces started for :  17  ->  0
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  0  to  35
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  43  ->  35
+Fails in CP Routing :  [(17, 35), (43, 35)]
+Routing in faces started for :  43  ->  17
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  17  to  35
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  13  ->  35
+Fails in CP Routing :  [(17, 35), (43, 35)]
+Routing in faces started for :  13  ->  43
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  43  to  35
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  31  ->  35
+Fails in CP Routing :  [(43, 35), (17, 35)]
+Routing in faces started for :  31  ->  14
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  14  to  35
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  0  ->  35
+Fails in CP Routing :  [(43, 35), (17, 35)]
+Routing in faces started for :  0  ->  17
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  17  to  35
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(17, 14)]
+Routing started for  13  to  14
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(17, 14)]
+Routing started for  17  to  14
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(17, 14)]
+Routing started for  0  to  14
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(17, 14)]
+Routing started for  35  to  14
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(17, 14)]
+Routing started for  36  to  14
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  13  ->  14
+Fails in CP Routing :  [(17, 14)]
+Routing in faces started for :  13  ->  0
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  0  to  14
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  17  ->  14
+Fails in CP Routing :  [(17, 14)]
+Routing in faces started for :  17  ->  0
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  0  to  14
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  0  ->  14
+Fails in CP Routing :  [(17, 14)]
+Routing in faces started for :  0  ->  17
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  17  to  14
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  35  ->  14
+Fails in CP Routing :  [(17, 14)]
+Routing in faces started for :  35  ->  0
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  0  to  14
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  36  ->  14
+Fails in CP Routing :  [(17, 14)]
+Routing in faces started for :  36  ->  0
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  0  to  14
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  13  to  0
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  17  to  0
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  14  to  0
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  31  to  0
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  36  to  0
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  13  ->  0
+Fails in CP Routing :  []
+Routing in faces started for :  13  ->  14
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  14  to  0
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  17  ->  0
+Fails in CP Routing :  []
+Routing in faces started for :  17  ->  36
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  36  to  0
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  14  ->  0
+Fails in CP Routing :  []
+Routing in faces started for :  14  ->  31
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  31  to  0
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  31  ->  0
+Fails in CP Routing :  []
+Routing in faces started for :  31  ->  14
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  14  to  0
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  36  ->  0
+Fails in CP Routing :  []
+Routing in faces started for :  36  ->  14
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  14  to  0
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+intermediate result: One Tree 	 1.20000E+00
+intermediate result: One Tree Checkpoint 	 2.60000E+00
+42 ./benchmark_graphs/Tinet.graphml n_before= 53 n_after= 8 m_after= 44 connectivity= 4 degree= 10
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(37, 35)]
+Routing started for  41  to  35
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(37, 35)]
+Routing started for  34  to  35
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(37, 35)]
+Routing started for  8  to  35
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(37, 35)]
+Routing started for  4  to  35
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(37, 35)]
+Routing started for  39  to  35
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  41  ->  35
+Fails in CP Routing :  [(37, 35)]
+Routing in faces started for :  41  ->  37
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  37  to  35
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  34  ->  35
+Fails in CP Routing :  [(37, 35)]
+Routing in faces started for :  34  ->  4
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  4  to  35
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  8  ->  35
+Fails in CP Routing :  [(37, 35)]
+Routing in faces started for :  8  ->  37
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  37  to  35
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  4  ->  35
+Fails in CP Routing :  [(37, 35)]
+Routing in faces started for :  4  ->  34
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  34  to  35
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  39  ->  35
+Fails in CP Routing :  [(37, 35)]
+Routing in faces started for :  39  ->  5
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  5  to  35
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(8, 5)]
+Routing started for  4  to  5
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(8, 5)]
+Routing started for  8  to  5
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(8, 5)]
+Routing started for  39  to  5
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(8, 5)]
+Routing started for  37  to  5
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(8, 5)]
+Routing started for  34  to  5
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  4  ->  5
+Fails in CP Routing :  [(8, 5)]
+Routing in faces started for :  4  ->  35
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  35  to  5
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  8  ->  5
+Fails in CP Routing :  [(8, 5)]
+Routing in faces started for :  8  ->  37
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  37  to  5
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  39  ->  5
+Fails in CP Routing :  [(8, 5)]
+Routing in faces started for :  39  ->  35
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  35  to  5
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  37  ->  5
+Fails in CP Routing :  [(8, 5)]
+Routing in faces started for :  37  ->  8
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  8  to  5
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  34  ->  5
+Fails in CP Routing :  [(8, 5)]
+Routing in faces started for :  34  ->  4
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  4  to  5
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  8  to  37
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(4, 35), (4, 37)]
+Routing started for  4  to  37
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(5, 37), (41, 37), (4, 37)]
+Routing started for  5  to  37
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(5, 37), (41, 37), (4, 37)]
+Routing started for  41  to  37
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(41, 37), (4, 37), (5, 37)]
+Routing started for  34  to  37
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  8  ->  37
+Fails in CP Routing :  []
+Routing in faces started for :  8  ->  39
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  39  to  37
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  4  ->  37
+Fails in CP Routing :  [(4, 35), (4, 37)]
+Routing in faces started for :  4  ->  34
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  34  to  37
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  5  ->  37
+Fails in CP Routing :  [(5, 37), (41, 37), (4, 37)]
+Routing in faces started for :  5  ->  39
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  39  to  37
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  41  ->  37
+Fails in CP Routing :  [(5, 37), (41, 37), (4, 37)]
+Routing in faces started for :  41  ->  39
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  39  to  37
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  34  ->  37
+Fails in CP Routing :  [(41, 37), (4, 37), (5, 37)]
+Routing in faces started for :  34  ->  4
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  4  to  37
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  5  to  8
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  39  to  8
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  34  to  8
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  35  to  8
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  4  to  8
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  5  ->  8
+Fails in CP Routing :  []
+Routing in faces started for :  5  ->  39
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  39  to  8
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  39  ->  8
+Fails in CP Routing :  []
+Routing in faces started for :  39  ->  34
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  34  to  8
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  34  ->  8
+Fails in CP Routing :  []
+Routing in faces started for :  34  ->  4
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  4  to  8
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  35  ->  8
+Fails in CP Routing :  []
+Routing in faces started for :  35  ->  39
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  39  to  8
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  4  ->  8
+Fails in CP Routing :  []
+Routing in faces started for :  4  ->  37
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  37  to  8
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  41  to  4
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  5  to  4
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  8  to  4
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  35  to  4
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  34  to  4
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  41  ->  4
+Fails in CP Routing :  []
+Routing in faces started for :  41  ->  8
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  8  to  4
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  5  ->  4
+Fails in CP Routing :  []
+Routing in faces started for :  5  ->  35
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  35  to  4
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  8  ->  4
+Fails in CP Routing :  []
+Routing in faces started for :  8  ->  41
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  41  to  4
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  35  ->  4
+Fails in CP Routing :  []
+Routing in faces started for :  35  ->  34
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  34  to  4
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  34  ->  4
+Fails in CP Routing :  []
+Routing in faces started for :  34  ->  35
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  35  to  4
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+intermediate result: One Tree 	 1.80000E+00
+intermediate result: One Tree Checkpoint 	 4.40000E+00
+51 ./benchmark_graphs/Uninett2011.graphml n_before= 69 n_after= 8 m_after= 48 connectivity= 4 degree= 10
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(3, 22)]
+Routing started for  63  to  22
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(3, 22)]
+Routing started for  0  to  22
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(3, 22)]
+Routing started for  61  to  22
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(3, 22)]
+Routing started for  1  to  22
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(3, 22)]
+Routing started for  46  to  22
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  63  ->  22
+Fails in CP Routing :  [(3, 22)]
+Routing in faces started for :  63  ->  0
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  0  to  22
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  0  ->  22
+Fails in CP Routing :  [(3, 22)]
+Routing in faces started for :  0  ->  61
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  61  to  22
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  61  ->  22
+Fails in CP Routing :  [(3, 22)]
+Routing in faces started for :  61  ->  0
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  0  to  22
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  1  ->  22
+Fails in CP Routing :  [(3, 22)]
+Routing in faces started for :  1  ->  46
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  46  to  22
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  46  ->  22
+Fails in CP Routing :  [(3, 22)]
+Routing in faces started for :  46  ->  1
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  1  to  22
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  5  to  1
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  61  to  1
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  22  to  1
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  46  to  1
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  []
+Routing started for  0  to  1
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  5  ->  1
+Fails in CP Routing :  []
+Routing in faces started for :  5  ->  3
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  3  to  1
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  61  ->  1
+Fails in CP Routing :  []
+Routing in faces started for :  61  ->  0
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  0  to  1
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  22  ->  1
+Fails in CP Routing :  []
+Routing in faces started for :  22  ->  5
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  5  to  1
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  46  ->  1
+Fails in CP Routing :  []
+Routing in faces started for :  46  ->  61
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  61  to  1
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  0  ->  1
+Fails in CP Routing :  []
+Routing in faces started for :  0  ->  61
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  61  to  1
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(5, 46)]
+Routing started for  61  to  46
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(5, 46)]
+Routing started for  3  to  46
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(5, 46)]
+Routing started for  5  to  46
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(5, 46)]
+Routing started for  1  to  46
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(5, 46)]
+Routing started for  63  to  46
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  61  ->  46
+Fails in CP Routing :  [(5, 46)]
+Routing in faces started for :  61  ->  0
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  0  to  46
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  3  ->  46
+Fails in CP Routing :  [(5, 46)]
+Routing in faces started for :  3  ->  22
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  22  to  46
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  5  ->  46
+Fails in CP Routing :  [(5, 46)]
+Routing in faces started for :  5  ->  0
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  0  to  46
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  1  ->  46
+Fails in CP Routing :  [(5, 46)]
+Routing in faces started for :  1  ->  22
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  22  to  46
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  63  ->  46
+Fails in CP Routing :  [(5, 46)]
+Routing in faces started for :  63  ->  5
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  5  to  46
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(63, 3), (22, 3)]
+Routing started for  0  to  3
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(63, 3), (22, 3)]
+Routing started for  46  to  3
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(22, 3), (63, 3)]
+Routing started for  63  to  3
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(22, 3), (63, 3)]
+Routing started for  61  to  3
+Routing done via EDP
+------------------------------------------------------
+Loop over samplesize is running
+Loop over stats is running
+Fails in  ONETREE Routing :  [(22, 3), (63, 3)]
+Routing started for  1  to  3
+Routing done via EDP
+------------------------------------------------------
+After simulate
+success 5 <function one_tree_pre at 0x7f1000693640>
+experiment for  <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+Done with precomputation algo
+Start routing
+Before simulate graph
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  0  ->  3
+Fails in CP Routing :  [(63, 3), (22, 3)]
+Routing in faces started for :  0  ->  63
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  63  to  3
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  46  ->  3
+Fails in CP Routing :  [(63, 3), (22, 3)]
+Routing in faces started for :  46  ->  22
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  22  to  3
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  63  ->  3
+Fails in CP Routing :  [(22, 3), (63, 3)]
+Routing in faces started for :  63  ->  61
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  61  to  3
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  61  ->  3
+Fails in CP Routing :  [(22, 3), (63, 3)]
+Routing in faces started for :  61  ->  63
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  63  to  3
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+Loop over samplesize is running
+Loop over stats is running
+
+Routing with a checkpoint started for :  1  ->  3
+Fails in CP Routing :  [(22, 3), (63, 3)]
+Routing in faces started for :  1  ->  63
+Routing succesful via Start-Faces
+------------------------------------------------------
+ 
+Routing started for  63  to  3
+Routing done via EDP
+------------------------------------------------------
+Routing succesful with the Checkpoint
+------------------------------------------------------
+ 
+After simulate
+success 5 <function one_tree_with_random_checkpoint_pre at 0x7f10006d25f0>
+experiment for  <function one_tree_pre at 0x7f1000693640>
+Done with precomputation algo
+Start routing
+Before simulate graph
