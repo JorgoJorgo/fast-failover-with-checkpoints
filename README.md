@@ -19,8 +19,6 @@ pip install networkx numpy matplotlib pydot
 * `..._experiments.py`: Experiments with preset parameters ready for execution.
 * The individual results are grouped into folders that include the benchmarks, experiments, and log files for each failure rate.
 * `benchmark-....txt`: Available for each failure rate of an experiment. These files can be used in `plotter.py` by adjusting the file path and algorithm names to match the result file.
-* `plots`: Contains the plots of the work.
-* `dot_to_svg.py`: Should be placed in the graph folder. Converts dot files of graphs to svg.
 
 The topologies can be found at [Rocketfuel](https://research.cs.washington.edu/networking/rocketfuel/) and [Internet Topology Zoo](http://www.topology-zoo.org/). These need to be downloaded and placed in the `benchmark_graphs` folder.
 
