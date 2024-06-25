@@ -53,6 +53,7 @@ def one_tree_with_random_checkpoint_pre(graph):
                                                 'edps_cp_to_s': [[source,destination]],
                                                 'tree_cp_to_d':[], 
                                                 'edps_cp_to_d': [[source,destination]],
+                                                'edps_s_to_d':[[source,destination]]
                                             }
                     continue
                 
@@ -90,6 +91,7 @@ def one_tree_with_random_checkpoint_pre(graph):
                                                 'edps_cp_to_s': edps_cp_to_s,
                                                 'tree_cp_to_d': tree_cp_to_d, 
                                                 'edps_cp_to_d': edps_cp_to_d,
+                                                'edps_s_to_d': all_edps(source,destination,graph)
                                             }
                                     
     return paths

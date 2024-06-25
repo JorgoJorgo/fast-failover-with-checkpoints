@@ -10,7 +10,7 @@ import glob
 from objective_function_experiments import *
 from trees import one_tree_pre
 from trees_with_cp import one_tree_with_random_checkpoint_pre
-from routing import RouteOneTree, RouteWithOneCheckpointOneTree
+from routing import PrepareSQ1, RouteOneTree, RouteSQ1, RouteWithOneCheckpointOneTree
 DEBUG = True
 
 # Data structure containing the algorithms under

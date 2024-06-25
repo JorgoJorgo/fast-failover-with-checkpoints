@@ -65,8 +65,94 @@ def RouteWithOneCheckpointOneTree(s,d,fails,paths):
     edps_cp_to_s = paths[s][d]['edps_cp_to_s']
     tree_cp_to_d  = paths[s][d]['tree_cp_to_d']
     edps_cp_to_d   = paths[s][d]['edps_cp_to_d']
+    edps_s_to_d = paths[s][d]['edps_s_to_d']
+
+    #before routing through the structure, the edps are traversed
+
+    currentNode = -1
+    edpIndex = 0
+    detour_edges = []
+    hops = 0
+    switches = 0
     
+    edps_for_s_d = edps_s_to_d
+
+    print('Routing via EDPs started for ' , s , " to " , d )
+
+    for edp in edps_for_s_d:
+
+        currentNode = s
+        last_node = s 
+
+        if edp != edps_for_s_d[len(edps_for_s_d) -1]:
+
+            currentNode = edp[edpIndex]
+
+
+            #every edp is traversed until d or faulty edge
+            while (currentNode != d):
+
+
+                #since the structure of the edps consists of a line a->b->c-> ... -> n the direct neighbor is checked
+                if (edp[edpIndex], edp[edpIndex +1]) in fails or (edp[edpIndex +1], edp[edpIndex]) in fails:
+                
+                    switches += 1
+
+                    
+                    detour_edges.append( (edp[edpIndex], edp[edpIndex +1]) )
+
+                    
+                    tmp_node = currentNode 
+                    currentNode = last_node 
+                    last_node = tmp_node
+                    hops += 1
+                    break
+
+                else :
+                    edpIndex += 1
+                    hops += 1
+                    last_node = currentNode 
+                    currentNode = edp[edpIndex]
+                #endif
+
+            #endwhile
+
+            # breaking out of the while loop potentially has 2 reasons : d reached / faulty edge detected
+
+
+            if currentNode == d : 
+                print('Routing OneTreeCP done via EDP')
+                print('------------------------------------------------------')
+                return (False, hops, switches, detour_edges)
+            #endif
+            
+            # case : faulty edge detected --> traverse back to s
+            while currentNode != s: 
+                detour_edges.append( (last_node,currentNode) )
+
+                last_node = currentNode 
+                
+                printIndex = edpIndex-1
+                
+                
+                # print("Source : ", s , " Destination : ", d)
+                # print("Edp : ", edp)
+                # print("EdpIndex-1 : ", printIndex)
+                # print("edp[edpIndex-1] : ", edp[edpIndex-1])
+                # print(" ")
+                
+                
+                currentNode = edp[edpIndex-1] 
+                edpIndex = edpIndex-1
+                hops += 1
+
+            #endwhile
+        #endif
+
+    #endfor
+
     routing_failure_faces = False
+
     #now the first step of the routing consists of face-routing from S to CP
     
     routing_failure_faces, hops_faces, switches_faces, detour_edges_faces = RouteFaces(s,cp,fails,faces_cp_to_s)
